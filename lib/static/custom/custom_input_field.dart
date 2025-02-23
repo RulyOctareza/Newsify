@@ -6,6 +6,7 @@ class CustomInputField extends StatelessWidget {
   final String label;
   final String hintText;
   final bool isPassword;
+  final IconData? icon;
 
   const CustomInputField({
     super.key,
@@ -13,6 +14,7 @@ class CustomInputField extends StatelessWidget {
     required this.label,
     required this.hintText,
     this.isPassword = false,
+    this.icon,
   });
 
   @override
@@ -38,8 +40,9 @@ class CustomInputField extends StatelessWidget {
           obscureText: isPassword,
           decoration: InputDecoration(
             hintText: hintText,
+            // prefixIcon: icon != null ? Icon(icon, color: Colors.grey) : null,
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-            suffixIcon: isPassword ? Icon(Icons.visibility_off) : null,
+            suffixIcon: icon != null ? Icon(icon, color: Colors.grey) : null,
           ),
         ),
         SizedBox(height: 15),

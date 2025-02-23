@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/instance_manager.dart';
+
 import 'package:newsify/screens/onboarding/signup/signup_page.dart';
 import 'package:newsify/screens/settings/setting_profile_page.dart';
 import 'package:newsify/static/custom/custom_button.dart';
@@ -74,6 +74,7 @@ class _SignUpPageState extends State<LoginPage> {
 
             // Email Field
             CustomInputField(
+              
               controller: emailController,
               label: "Email",
               hintText: "Enter your Email ID",

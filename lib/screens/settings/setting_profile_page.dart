@@ -1,7 +1,10 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+
+import 'package:newsify/static/custom/custom_button.dart';
 import 'package:newsify/static/custom/custom_input_field.dart';
 
 class SettingProfilePage extends StatefulWidget {
@@ -66,7 +69,7 @@ class _SettingProfilePageState extends State<SettingProfilePage> {
                     backgroundImage:
                         _image != null
                             ? FileImage(_image!) as ImageProvider
-                            : const AssetImage("assets/default_avatar.png"),
+                            : const AssetImage("assets/icon_person.png"),
                     backgroundColor: Colors.grey[300],
                   ),
                   Positioned(
@@ -102,11 +105,13 @@ class _SettingProfilePageState extends State<SettingProfilePage> {
                 controller: fullnameController,
               ),
               CustomInputField(
+                icon: Icons.email_rounded,
                 label: 'Email',
                 hintText: 'Enter your Email',
                 controller: emailController,
               ),
               CustomInputField(
+                icon: Icons.phone,
                 label: 'Phone Number',
                 hintText: 'Enter your Phone Number',
                 controller: phoneNumberController,
@@ -114,18 +119,22 @@ class _SettingProfilePageState extends State<SettingProfilePage> {
 
               const SizedBox(height: 20),
 
-              // Tombol Continue
-              ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blueGrey,
-                  foregroundColor: Colors.white,
-                  minimumSize: const Size(double.infinity, 50),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                child: const Text("Continue"),
+              CustomButton(
+                text: 'Continue',
+                onPressed: () {
+                  if ((usernameController.text.isNotEmpty) &&
+                      (fullnameController.text.isNotEmpty) &&
+                      (emailController.text.isNotEmpty) &&
+                      (phoneNumberController.text.isNotEmpty)) {
+                    Get.snackbar('Login Success', 'Congratulations');
+                  } else {
+                    Get.snackbar(
+                      'Error',
+                      'All fields must be filled',
+                      colorText: Colors.red,
+                    );
+                  }
+                },
               ),
             ],
           ),

@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/get_core.dart';
+
 import 'package:newsify/screens/onboarding/login/login_page.dart';
 import 'package:newsify/static/custom/custom_button.dart';
 import 'package:newsify/static/custom/custom_input_field.dart';
