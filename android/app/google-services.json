@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "863858972465",
+    "project_id": "news-app-sanber",
+    "storage_bucket": "news-app-sanber.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:863858972465:android:126958442b163a0fd20210",
+        "android_client_info": {
+          "package_name": "com.example.newsify"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "863858972465-klrrhe5kc28a5jdeils641845vg2613v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPMsVWUmPTKA2XzJyirqn0BrZ2vU0Jm8g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "863858972465-klrrhe5kc28a5jdeils641845vg2613v.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "863858972465-3lngj8vbv4joen729uugh94v4obk6cru.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.newsify"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

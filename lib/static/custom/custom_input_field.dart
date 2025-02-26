@@ -35,7 +35,18 @@ class CustomInputField extends StatelessWidget {
           ),
         ),
         SizedBox(height: 5),
-        TextField(
+        TextFormField(
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return "Email tidak boleh kosong";
+            }
+            if (!RegExp(
+              r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$',
+            ).hasMatch(value)) {
+              return "Format email tidak valid";
+            }
+            return null;
+          },
           controller: controller,
           obscureText: isPassword,
           decoration: InputDecoration(

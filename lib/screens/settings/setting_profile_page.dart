@@ -1,11 +1,12 @@
 import 'dart:io';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
 
 import 'package:newsify/static/custom/custom_button.dart';
-import 'package:newsify/static/custom/custom_input_field.dart';
+import 'package:newsify/static/custom/newsheader.dart';
+import 'package:newsify/static/style/typography.dart';
 
 class SettingProfilePage extends StatefulWidget {
   const SettingProfilePage({super.key});
@@ -15,125 +16,70 @@ class SettingProfilePage extends StatefulWidget {
 }
 
 class _SettingProfilePageState extends State<SettingProfilePage> {
-  // File untuk menyimpan gambar yang dipilih
   File? _image;
-  final TextEditingController usernameController = TextEditingController();
-  final TextEditingController fullnameController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController phoneNumberController = TextEditingController();
+  String? usernameController;
+  String? fullnameController;
+  String? emailController;
+  String? phoneNumberController;
 
-  Future<void> _pickImage() async {
-    final pickedFile = await ImagePicker().pickImage(
-      source: ImageSource.gallery,
-    );
+  // Future<void> _pickImage() async {
+  //   final pickedFile = await ImagePicker().pickImage(
+  //     source: ImageSource.gallery,
+  //   );
 
-    if (pickedFile != null) {
-      setState(() {
-        // Simpan gambar yang dipilih
-        _image = File(pickedFile.path);
-      });
-    }
+  //   if (pickedFile != null) {
+  //     setState(() {
+  //       _image = File(pickedFile.path);
+  //     });
+  //   }
+  // }
+
+  @override
+  void initState() {
+    super.initState();
+    emailController = Get.arguments["email"] ?? "";
+    fullnameController = Get.arguments["fullname"] ?? "";
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[200],
+      appBar: NewsHeader(),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
-        child: SingleChildScrollView(
+        child: Center(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(height: 40),
-              const Text(
-                "Let's get you started",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 10),
-              const Text(
-                "Create your Profile",
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.blue,
-                ),
-              ),
-              const SizedBox(height: 20),
-
               // Foto Profil
-              Stack(
-                children: [
-                  CircleAvatar(
-                    radius: 50,
-                    backgroundImage:
-                        _image != null
-                            ? FileImage(_image!) as ImageProvider
-                            : const AssetImage("assets/icon_person.png"),
-                    backgroundColor: Colors.grey[300],
-                  ),
-                  Positioned(
-                    bottom: 0,
-                    right: 0,
-                    child: GestureDetector(
-                      onTap: _pickImage,
-                      child: CircleAvatar(
-                        radius: 16,
-                        backgroundColor: Colors.black,
-                        child: const Icon(
-                          Icons.edit,
-                          color: Colors.white,
-                          size: 18,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+              CircleAvatar(
+                radius: 50,
+                backgroundImage:
+                    _image == null
+                        ? NetworkImage(
+                          '${FirebaseAuth.instance.currentUser?.photoURL}',
+                        )
+                        : FileImage(_image!) as ImageProvider,
+                backgroundColor: Colors.grey[300],
               ),
 
-              const SizedBox(height: 30),
-
-              // Text Fields
-              CustomInputField(
-                label: 'Username',
-                hintText: 'Enter your Username',
-                controller: usernameController,
+              SizedBox(height: 12),
+              Text(
+                '${FirebaseAuth.instance.currentUser?.displayName}',
+                style: titleTextStyle.copyWith(fontSize: 24),
               ),
-              CustomInputField(
-                label: 'Fullname',
-                hintText: 'Enter your Fullname',
-                controller: fullnameController,
+              SizedBox(height: 5),
+              Text(
+                '${FirebaseAuth.instance.currentUser?.email}',
+                style: regularTextStyle.copyWith(fontSize: 22),
               ),
-              CustomInputField(
-                icon: Icons.email_rounded,
-                label: 'Email',
-                hintText: 'Enter your Email',
-                controller: emailController,
-              ),
-              CustomInputField(
-                icon: Icons.phone,
-                label: 'Phone Number',
-                hintText: 'Enter your Phone Number',
-                controller: phoneNumberController,
-              ),
-
-              const SizedBox(height: 20),
-
+              SizedBox(height: 12),
               CustomButton(
-                text: 'Continue',
+                text: 'Log out',
                 onPressed: () {
-                  if ((usernameController.text.isNotEmpty) &&
-                      (fullnameController.text.isNotEmpty) &&
-                      (emailController.text.isNotEmpty) &&
-                      (phoneNumberController.text.isNotEmpty)) {
-                    Get.snackbar('Login Success', 'Congratulations');
-                  } else {
-                    Get.snackbar(
-                      'Error',
-                      'All fields must be filled',
-                      colorText: Colors.red,
-                    );
-                  }
+                  _showAlertDialog(context);
                 },
               ),
             ],
@@ -142,4 +88,30 @@ class _SettingProfilePageState extends State<SettingProfilePage> {
       ),
     );
   }
+}
+
+void _showAlertDialog(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text('Alert'),
+        content: Text('Are you sure log Out ?'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text('No'),
+          ),
+          TextButton(
+            onPressed: () {
+              Get.offAndToNamed('/login');
+            },
+            child: Text('Yes'),
+          ),
+        ],
+      );
+    },
+  );
 }

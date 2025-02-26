@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:newsify/screens/onboarding/onboarding_page_one.dart';
 import 'package:newsify/static/style/colors.dart';
 import 'package:newsify/static/style/typography.dart';
 
@@ -10,7 +9,7 @@ class LoadingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Future.delayed(Duration(seconds: 3), () {
-      Get.off(() => const OnboardingPageOne());
+      Get.toNamed('/onboarding1');
     });
 
     return Scaffold(

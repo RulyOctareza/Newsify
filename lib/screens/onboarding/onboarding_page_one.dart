@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:newsify/screens/onboarding/onboarding_page_three.dart';
-import 'package:newsify/screens/onboarding/onboarding_page_two.dart';
 import 'package:newsify/static/custom/custom_button.dart';
 import 'package:newsify/static/style/colors.dart';
 import 'package:newsify/static/style/typography.dart';
@@ -93,12 +91,12 @@ class OnboardingPageOne extends StatelessWidget {
                     text: 'Continue',
                     type: ButtonType.secondary,
                     onPressed: () {
-                      Get.to(() => const OnboardingPageTwo());
+                      Get.toNamed('/onboarding2');
                     },
                   ),
                   SizedBox(height: 12),
                   InkWell(
-                    onTap: () => Get.to(() => OnboardingPageThree()),
+                    onTap: () => Get.toNamed('/onboarding3'),
                     child: Text(
                       'Skip',
                       style: semiBoldTextStyle.copyWith(color: whiteColor),

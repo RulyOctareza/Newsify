@@ -20,7 +20,7 @@ class NewsHeadlineDetail extends StatelessWidget {
               width: double.maxFinite,
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
-                color: sageGreen, // Warna hijau muda mirip gambar
+                color: sageGreen,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(16),
                   topRight: Radius.circular(16),

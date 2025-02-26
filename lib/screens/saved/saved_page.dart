@@ -1,20 +1,19 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:newsify/screens/menu/menu.dart';
-import 'package:newsify/screens/settings/setting_profile_page.dart';
+import 'package:get/get.dart';
+
 import 'package:newsify/static/card/news_card.dart';
-import 'package:newsify/static/style/colors.dart';
+import 'package:newsify/static/custom/newsheader.dart';
+
 import 'package:newsify/static/style/typography.dart';
 
 class SavedPage extends StatefulWidget {
   const SavedPage({super.key});
 
   @override
-  State<SavedPage> createState() => _CategoriesPageState();
+  State<SavedPage> createState() => _SavedPageState();
 }
 
-class _CategoriesPageState extends State<SavedPage> {
+class _SavedPageState extends State<SavedPage> {
   final List<String> categories = [
     "Trending",
     "Politics",
@@ -68,37 +67,7 @@ class _CategoriesPageState extends State<SavedPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: darkGreen,
-        title: Row(
-          children: [
-            IconButton(
-              icon: Image.asset('assets/icon_menu.png', scale: 5),
-              onPressed: () {
-                Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(builder: (BuildContext context) => Menu()),
-                  (route) => true,
-                );
-              },
-            ),
-            Spacer(),
-            Text(
-              "WORLD NOW",
-              style: boldTextStyle.copyWith(fontSize: 30, color: sageGreen),
-            ),
-            Spacer(),
-            InkWell(
-              onTap: () {
-                log('Person Tapped !');
-              },
-              child: CircleAvatar(
-                backgroundImage: AssetImage('assets/icon_person.png'),
-              ),
-            ),
-          ],
-        ),
-      ),
+      appBar: NewsHeader(),
 
       body: Padding(
         padding: const EdgeInsets.all(12.0),
@@ -149,6 +118,7 @@ class _CategoriesPageState extends State<SavedPage> {
                 itemCount: news.length,
                 itemBuilder: (context, index) {
                   return NewsCard(
+                    onTap: () => Get.toNamed('/detail'),
                     imageUrl:
                         'https://images.unsplash.com/photo-1546422904-90eab23c3d7e?q=80&w=2944&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                     title: news[index]['title']!,

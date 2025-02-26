@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:newsify/screens/menu/menu_widget.dart';
 import 'package:newsify/static/custom/text_button_widget.dart';
 import 'package:newsify/static/style/colors.dart';
@@ -11,7 +13,8 @@ class Menu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String name = 'Adibagus ganet';
+    String name;
+    String photoURL;
 
     return Scaffold(
       backgroundColor: green,
@@ -41,19 +44,29 @@ class Menu extends StatelessWidget {
               Row(
                 children: [
                   Flexible(
-                    child: Container(
-                      height: 74,
-                      width: 74,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage('assets/image_person.png'),
-                        ),
+                    child: CircleAvatar(
+                      foregroundImage: NetworkImage(
+                        '${FirebaseAuth.instance.currentUser?.photoURL}',
                       ),
                     ),
+
+                    // Container(
+                    //     height: 74,
+                    //     width: 74,
+                    //     decoration: BoxDecoration(
+                    //       borderRadius: BorderRadius.circular(12),
+                    //       image: DecorationImage(
+                    //         image: NetworkImage(
+                    //           '${FirebaseAuth.instance.currentUser?.photoURL}',
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ))
                   ),
-                  SizedBox(width: 16),
+                  SizedBox(width: 12),
                   Text(
-                    name,
+                    '${FirebaseAuth.instance.currentUser?.displayName}',
                     style: semiBoldTextStyle.copyWith(
                       fontSize: 26,
                       color: darkGreen,
@@ -63,9 +76,35 @@ class Menu extends StatelessWidget {
                 ],
               ),
               SizedBox(height: 35),
-              MenuWidget(title: 'Home', color: darkGreen, ontap: () {}),
-              MenuWidget(ontap: () {}, title: 'Saved', color: darkGreen),
-              MenuWidget(ontap: () {}, title: 'Settings', color: darkGreen),
+              MenuWidget(
+                title: 'Home',
+                color: darkGreen,
+                ontap: () {
+                  Get.toNamed('/homepage');
+                },
+              ),
+              MenuWidget(
+                ontap: () {
+                  Get.toNamed('/saved');
+                },
+                title: 'Saved',
+                color: darkGreen,
+              ),
+              MenuWidget(
+                ontap: () {
+                  Get.toNamed(
+                    '/setting',
+                    arguments: {
+                      'email': FirebaseAuth.instance.currentUser?.email,
+                      'fullname':
+                          FirebaseAuth.instance.currentUser?.displayName,
+                      'photoURL': FirebaseAuth.instance.currentUser?.photoURL,
+                    },
+                  );
+                },
+                title: 'Settings',
+                color: darkGreen,
+              ),
               Spacer(),
 
               TextButtonWidget(onPressed: () {}, title: 'About Us'),

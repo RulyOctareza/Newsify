@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:newsify/screens/home/home_page.dart';
+
 import 'package:newsify/static/custom/custom_button.dart';
 import 'package:newsify/static/style/colors.dart';
 import 'package:newsify/static/style/typography.dart';
@@ -92,7 +92,7 @@ class OnboardingPageThree extends StatelessWidget {
                     text: 'Start',
                     type: ButtonType.secondary,
                     onPressed: () {
-                      Get.off(() => HomePage());
+                      Get.offAndToNamed('/login');
                     },
                   ),
                   SizedBox(height: 12),

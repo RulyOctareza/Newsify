@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:newsify/static/card/news_headline_detail.dart';
-import 'package:newsify/static/custom/custom_newsheader.dart';
+import 'package:newsify/static/custom/newsheader.dart';
 import 'package:newsify/static/style/colors.dart';
 import 'package:newsify/static/style/typography.dart';
 
@@ -20,7 +21,9 @@ class DetailPageNews extends StatelessWidget {
             Row(
               children: [
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.toNamed('/homepage');
+                  },
                   icon: Icon(Icons.arrow_back, size: 28, color: darkGreen),
                 ),
                 Spacer(),

@@ -5,9 +5,11 @@ import 'package:newsify/static/style/typography.dart';
 class CustomPasswordField extends StatefulWidget {
   final TextEditingController controller;
   final String hintText;
+  final String label;
 
   const CustomPasswordField({
     super.key,
+    required this.label,
     required this.controller,
     required this.hintText,
   });
@@ -26,7 +28,7 @@ class _CustomPasswordFieldState extends State<CustomPasswordField> {
       children: [
         Text.rich(
           TextSpan(
-            text: 'Password',
+            text: widget.label,
             style: boldTextStyle,
             children: [
               TextSpan(
@@ -36,7 +38,16 @@ class _CustomPasswordFieldState extends State<CustomPasswordField> {
             ],
           ),
         ),
-        TextField(
+        TextFormField(
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return 'Password tidak boleh kosong';
+            }
+            if (value.length < 6) {
+              return 'Password minimal 6 karakter';
+            }
+            return null;
+          },
           controller: widget.controller,
           obscureText:
               !isPasswordVisible, // Menentukan apakah teks disembunyikan
@@ -49,7 +60,7 @@ class _CustomPasswordFieldState extends State<CustomPasswordField> {
               ),
               onPressed: () {
                 setState(() {
-                  isPasswordVisible = !isPasswordVisible; // Toggle visibility
+                  isPasswordVisible = !isPasswordVisible;
                 });
               },
             ),
