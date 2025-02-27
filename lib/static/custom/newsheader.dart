@@ -7,7 +7,9 @@ import 'package:newsify/static/style/colors.dart';
 import 'package:newsify/static/style/typography.dart';
 
 class NewsHeader extends StatelessWidget implements PreferredSizeWidget {
-  const NewsHeader({super.key});
+  NewsHeader({super.key});
+
+  final _auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -39,15 +41,16 @@ class NewsHeader extends StatelessWidget implements PreferredSizeWidget {
                   () => SettingProfilePage(),
 
                   arguments: {
-                    'email': FirebaseAuth.instance.currentUser?.email,
-                    'fullname': FirebaseAuth.instance.currentUser?.displayName,
-                    'photoURL': FirebaseAuth.instance.currentUser?.photoURL,
+                    'email': _auth.currentUser?.email,
+                    'fullname': _auth.currentUser?.displayName,
+                    'photoURL': _auth.currentUser?.photoURL,
                   },
                 ),
             child: CircleAvatar(
-              backgroundImage: NetworkImage(
-                '${FirebaseAuth.instance.currentUser?.photoURL}',
-              ),
+              backgroundImage:
+                  _auth.currentUser?.photoURL != null
+                      ? NetworkImage('${_auth.currentUser?.photoURL}')
+                      : AssetImage('assets/logo_small.png'),
             ),
           ),
         ],

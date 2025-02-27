@@ -13,9 +13,6 @@ class Menu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String name;
-    String photoURL;
-
     return Scaffold(
       backgroundColor: green,
       body: SafeArea(
@@ -49,20 +46,6 @@ class Menu extends StatelessWidget {
                         '${FirebaseAuth.instance.currentUser?.photoURL}',
                       ),
                     ),
-
-                    // Container(
-                    //     height: 74,
-                    //     width: 74,
-                    //     decoration: BoxDecoration(
-                    //       borderRadius: BorderRadius.circular(12),
-                    //       image: DecorationImage(
-                    //         image: NetworkImage(
-                    //           '${FirebaseAuth.instance.currentUser?.photoURL}',
-                    //         ),
-                    //       ),
-                    //     ),
-                    //   ),
-                    // ))
                   ),
                   SizedBox(width: 12),
                   Text(

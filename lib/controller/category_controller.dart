@@ -7,3 +7,4 @@ class CategoryController extends GetxController {
     selectedCategory.value = category;
   }
 }
+

@@ -16,11 +16,12 @@ class SettingProfilePage extends StatefulWidget {
 }
 
 class _SettingProfilePageState extends State<SettingProfilePage> {
-  File? _image;
   String? usernameController;
   String? fullnameController;
   String? emailController;
   String? phoneNumberController;
+
+  final _auth = FirebaseAuth.instance;
 
   // Future<void> _pickImage() async {
   //   final pickedFile = await ImagePicker().pickImage(
@@ -57,22 +58,21 @@ class _SettingProfilePageState extends State<SettingProfilePage> {
               CircleAvatar(
                 radius: 50,
                 backgroundImage:
-                    _image == null
+                    _auth.currentUser?.photoURL != null
                         ? NetworkImage(
-                          '${FirebaseAuth.instance.currentUser?.photoURL}',
+                          '${_auth.currentUser?.photoURL ?? Icon(Icons.person)}',
                         )
-                        : FileImage(_image!) as ImageProvider,
-                backgroundColor: Colors.grey[300],
+                        : AssetImage('assets/logo_small.png'),
               ),
 
               SizedBox(height: 12),
               Text(
-                '${FirebaseAuth.instance.currentUser?.displayName}',
+                _auth.currentUser?.displayName ?? '',
                 style: titleTextStyle.copyWith(fontSize: 24),
               ),
               SizedBox(height: 5),
               Text(
-                '${FirebaseAuth.instance.currentUser?.email}',
+                '${_auth.currentUser?.email}',
                 style: regularTextStyle.copyWith(fontSize: 22),
               ),
               SizedBox(height: 12),

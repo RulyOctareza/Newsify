@@ -1,9 +1,8 @@
-import 'dart:developer';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:newsify/services/google_sign_in.dart';
+import 'package:newsify/controller/auth_controller.dart';
+
 import 'package:newsify/static/custom/custom_button.dart';
 import 'package:newsify/static/custom/custom_input_field.dart';
 import 'package:newsify/static/custom/custom_password_field.dart';
@@ -26,44 +25,7 @@ class _SignUpPageState extends State<SignUpPage> {
   bool isRemembered = false;
 
   ValueNotifier<UserCredential?> userCredential = ValueNotifier(null);
-
-  void _signIn() async {
-    UserCredential? credential = await signInWithGoogle();
-    userCredential.value = credential;
-    log(credential?.user?.email ?? "No email found");
-
-    // Navigasi setelah login berhasil
-    if (mounted) {
-      Get.offAndToNamed('/homepage');
-    }
-  }
-
-  Future<void> _register() async {
-    if (!_formKey.currentState!.validate()) return;
-    try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: _emailController.text.trim(),
-        password: _passwordController.text.trim(),
-      );
-
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text('Registrasi Sukses')));
-
-      Get.toNamed('/login');
-    } on FirebaseAuthException catch (e) {
-      String message = "Terjadi kesalahan";
-      if (e.code == 'email-already-in-use') {
-        message = "Email sudah digunakan";
-      } else if (e.code == 'invalid-email') {
-        message = "Format email tidak valid";
-      } else if (e.code == 'weak-password') {
-        message = "Password terlalu lemah";
-      }
-      log(e.toString());
-      Get.snackbar('Error', message);
-    }
-  }
+  final AuthController authController = Get.put(AuthController());
 
   @override
   void dispose() {
@@ -102,7 +64,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     valueListenable: userCredential,
                     builder: (context, value, child) {
                       return SocialButton(
-                        onPressed: _signIn,
+                        onPressed: authController.signIn,
                         image: 'assets/icon_google.png',
                         label: "Google",
                       );
@@ -146,28 +108,24 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
               SizedBox(height: 12),
 
-              // Remember Me Checkbox
-              // Row(
-              //   children: [
-              //     Checkbox(
-              //       value: isRemembered,
-              //       onChanged: (value) {
-              //         setState(() {
-              //           isRemembered = value!;
-              //         });
-              //       },
-              //     ),
-              //     Text("Remember Me"),
-              //   ],
-              // ),
-
               // Sign Up Button
               CustomButton(
                 text: 'Sign Up',
                 type: ButtonType.primary,
                 onPressed: () {
+                  if (!_formKey.currentState!.validate()) return;
                   if (_passwordController.text == _confirmPassword.text) {
-                    _register();
+                    authController.register(
+                      _emailController.text,
+                      _passwordController.text,
+                    );
+                  } else {
+                    Get.snackbar(
+                      'Error',
+                      'Password tidak sama',
+                      backgroundColor: Colors.red,
+                      colorText: Colors.white,
+                    );
                   }
                 },
               ),

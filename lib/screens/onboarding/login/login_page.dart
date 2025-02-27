@@ -1,11 +1,9 @@
-import 'dart:developer';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:newsify/controller/auth_controller.dart';
 
 import 'package:newsify/screens/onboarding/signup/signup_page.dart';
-import 'package:newsify/services/google_sign_in.dart';
 
 import 'package:newsify/static/custom/custom_button.dart';
 import 'package:newsify/static/custom/custom_input_field.dart';
@@ -28,61 +26,7 @@ class _SignUpPageState extends State<LoginPage> {
   bool isRemembered = false;
 
   ValueNotifier<UserCredential?> userCredential = ValueNotifier(null);
-
-  void _signIn() async {
-    try {
-      UserCredential? credential = await signInWithGoogle();
-      if (credential != null) {
-        userCredential.value = credential;
-        log("User signed in: ${credential.user?.email ?? 'No email found'}");
-
-        // Navigasi setelah login berhasil
-        if (mounted) {
-          Get.offAndToNamed('/homepage');
-        }
-      } else {
-        log("Google sign-in failed or canceled.");
-      }
-    } catch (e) {
-      log("Error during sign-in: $e");
-      Get.snackbar('Login Error', 'Gagal masuk dengan Google.');
-    }
-  }
-
-  Future<void> _login() async {
-    if (!_formKey.currentState!.validate()) return;
-    try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: _emailController.text.trim(),
-        password: _passwordController.text.trim(),
-      );
-
-      Get.snackbar(
-        'Congratulations',
-        'Login Success',
-        backgroundColor: Colors.green,
-        colorText: Colors.white,
-      );
-
-      Get.toNamed('/homepage');
-    } on FirebaseAuthException catch (e) {
-      String message = "Terjadi kesalahan";
-      if (e.code == 'invalid-credential') {
-        message = "Email or Password wrong";
-      } else if (e.code == 'invalid-email') {
-        message = "Format email tidak valid";
-      } else if (e.code == 'weak-password') {
-        message = "Password terlalu lemah";
-      }
-      log(e.toString());
-      Get.snackbar(
-        'Error',
-        message,
-        backgroundColor: Colors.red,
-        colorText: Colors.white,
-      );
-    }
-  }
+  final AuthController authController = Get.put(AuthController());
 
   @override
   void dispose() {
@@ -120,7 +64,7 @@ class _SignUpPageState extends State<LoginPage> {
                     valueListenable: userCredential,
                     builder: (context, value, child) {
                       return SocialButton(
-                        onPressed: _signIn,
+                        onPressed: authController.signIn,
                         image: 'assets/icon_google.png',
                         label: "Google",
                       );
@@ -178,7 +122,10 @@ class _SignUpPageState extends State<LoginPage> {
                 text: 'Login',
                 type: ButtonType.primary,
                 onPressed: () {
-                  _login();
+                  authController.login(
+                    email: _emailController.text,
+                    password: _passwordController.text,
+                  );
                 },
               ),
 
