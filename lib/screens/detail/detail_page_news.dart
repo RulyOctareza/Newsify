@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:newsify/static/card/news_headline_detail.dart';
-import 'package:newsify/static/custom/newsheader.dart';
+import 'package:newsify/static/custom/custom_appbar_news_header.dart';
 import 'package:newsify/static/style/colors.dart';
 import 'package:newsify/static/style/typography.dart';
 

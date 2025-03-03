@@ -5,7 +5,7 @@ import 'package:newsify/controller/category_controller.dart';
 import 'package:newsify/screens/detail/dummy_category.dart';
 import 'package:newsify/screens/detail/dummy_news.dart';
 import 'package:newsify/static/card/news_card.dart';
-import 'package:newsify/static/custom/newsheader.dart';
+import 'package:newsify/static/custom/custom_appbar_news_header.dart';
 import 'package:newsify/static/style/typography.dart';
 
 class HomePage extends StatelessWidget {

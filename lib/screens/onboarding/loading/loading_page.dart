@@ -12,19 +12,22 @@ class LoadingPage extends StatefulWidget {
 }
 
 class _LoadingPageState extends State<LoadingPage> {
-  final AuthController _authController = Get.find<AuthController>();
+  late final AuthController _authController;
 
   @override
   void initState() {
     super.initState();
     _checkUserStatus();
+    Future.microtask(() {
+      _authController = Get.find<AuthController>();
+    });
   }
 
   Future<void> _checkUserStatus() async {
     await Future.delayed(Duration(seconds: 2));
 
     if (_authController.currentUser.value == null) {
-      Get.offAllNamed('/login');
+      Get.offAllNamed('/onboarding1');
     } else {
       Get.offAllNamed('/homepage');
     }
