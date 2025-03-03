@@ -10,17 +10,19 @@ import 'package:newsify/screens/onboarding/onboarding_page_two.dart';
 import 'package:newsify/screens/onboarding/signup/signup_page.dart';
 import 'package:newsify/screens/saved/saved_page.dart';
 import 'package:newsify/screens/settings/setting_profile_page.dart';
+class AppRoutes {
+  static final routes = [
+    GetPage(name: '/', page: () => LoadingPage()),
+    GetPage(name: '/onboarding1', page: () => OnboardingPageOne()),
+    GetPage(name: '/onboarding2', page: () => OnboardingPageTwo()),
+    GetPage(name: '/onboarding3', page: () => OnboardingPageThree()),
+    GetPage(name: '/login', page: () => LoginPage()),
+    GetPage(name: '/signup', page: () => SignUpPage()),
+    GetPage(name: '/homepage', page: () => HomePage()),
+    GetPage(name: '/menu', page: () => Menu()),
+    GetPage(name: '/setting', page: () => SettingProfilePage()),
+    GetPage(name: '/detail', page: () => DetailPageNews()),
+    GetPage(name: '/saved', page: () => SavedPage()),
+  ];
+}
 
-final routes = [
-  GetPage(name: '/', page: () => LoadingPage()),
-  GetPage(name: '/onboarding1', page: () => OnboardingPageOne()),
-  GetPage(name: '/onboarding2', page: () => OnboardingPageTwo()),
-  GetPage(name: '/onboarding3', page: () => OnboardingPageThree()),
-  GetPage(name: '/login', page: () => LoginPage()),
-  GetPage(name: '/signup', page: () => SignUpPage()),
-  GetPage(name: '/homepage', page: () => HomePage()),
-  GetPage(name: '/menu', page: () => Menu()),
-  GetPage(name: '/setting', page: () => SettingProfilePage()),
-  GetPage(name: '/detail', page: () => DetailPageNews()),
-  GetPage(name: '/saved', page: () => SavedPage()),
-];

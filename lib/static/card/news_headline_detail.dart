@@ -15,7 +15,6 @@ class NewsHeadlineDetail extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            // Bagian Teks
             Container(
               width: double.maxFinite,
               padding: const EdgeInsets.all(8),
@@ -32,14 +31,14 @@ class NewsHeadlineDetail extends StatelessWidget {
                 style: semiBoldTextStyle,
               ),
             ),
-            // Gambar
+
             ClipRRect(
               borderRadius: const BorderRadius.only(
                 bottomLeft: Radius.circular(16),
                 bottomRight: Radius.circular(16),
               ),
               child: Image.asset(
-                'assets/image_onboarding2.jpg', // Ganti dengan path gambar yang sesuai
+                'assets/image_onboarding2.jpg',
                 fit: BoxFit.cover,
                 width: double.infinity,
                 height: 150,

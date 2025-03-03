@@ -1,9 +1,7 @@
-import 'dart:io';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:newsify/controller/auth_controller.dart';
 import 'package:newsify/static/custom/custom_button.dart';
 import 'package:newsify/static/custom/newsheader.dart';
 import 'package:newsify/static/style/typography.dart';
@@ -22,24 +20,13 @@ class _SettingProfilePageState extends State<SettingProfilePage> {
   String? phoneNumberController;
 
   final _auth = FirebaseAuth.instance;
-
-  // Future<void> _pickImage() async {
-  //   final pickedFile = await ImagePicker().pickImage(
-  //     source: ImageSource.gallery,
-  //   );
-
-  //   if (pickedFile != null) {
-  //     setState(() {
-  //       _image = File(pickedFile.path);
-  //     });
-  //   }
-  // }
+  final AuthController authController = Get.find<AuthController>();
 
   @override
   void initState() {
     super.initState();
-    emailController = Get.arguments["email"] ?? "";
-    fullnameController = Get.arguments["fullname"] ?? "";
+    emailController = Get.arguments?["email"] ?? "";
+    fullnameController = Get.arguments?["fullname"] ?? "";
   }
 
   @override
@@ -57,22 +44,21 @@ class _SettingProfilePageState extends State<SettingProfilePage> {
               // Foto Profil
               CircleAvatar(
                 radius: 50,
+                backgroundColor: Colors.grey[300],
                 backgroundImage:
                     _auth.currentUser?.photoURL != null
-                        ? NetworkImage(
-                          '${_auth.currentUser?.photoURL ?? Icon(Icons.person)}',
-                        )
-                        : AssetImage('assets/logo_small.png'),
+                        ? NetworkImage(_auth.currentUser!.photoURL!)
+                        : AssetImage('assets/logo_small.png') as ImageProvider,
               ),
 
               SizedBox(height: 12),
               Text(
-                _auth.currentUser?.displayName ?? '',
+                _auth.currentUser?.displayName ?? 'User',
                 style: titleTextStyle.copyWith(fontSize: 24),
               ),
               SizedBox(height: 5),
               Text(
-                '${_auth.currentUser?.email}',
+                _auth.currentUser?.email ?? 'No email',
                 style: regularTextStyle.copyWith(fontSize: 22),
               ),
               SizedBox(height: 12),
@@ -88,30 +74,31 @@ class _SettingProfilePageState extends State<SettingProfilePage> {
       ),
     );
   }
-}
 
-void _showAlertDialog(BuildContext context) {
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: Text('Alert'),
-        content: Text('Are you sure log Out ?'),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            child: Text('No'),
-          ),
-          TextButton(
-            onPressed: () {
-              Get.offAndToNamed('/login');
-            },
-            child: Text('Yes'),
-          ),
-        ],
-      );
-    },
-  );
+  void _showAlertDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Alert'),
+          content: Text('Are you sure you want to log out?'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('No'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                authController.logout(); 
+              },
+              child: Text('Yes'),
+            ),
+          ],
+        );
+      },
+    );
+  }
 }

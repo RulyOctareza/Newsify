@@ -46,7 +46,7 @@ class _SignUpPageState extends State<LoginPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(height: 53),
-              // Logo
+              // Logo app
               CircleAvatar(
                 radius: 50,
                 backgroundColor: Colors.teal.shade100,
@@ -54,7 +54,7 @@ class _SignUpPageState extends State<LoginPage> {
               ),
               SizedBox(height: 20),
 
-              // Social Login Buttons
+              // logo google
               Text("Continue with", style: boldTextStyle),
               SizedBox(height: 10),
               Row(

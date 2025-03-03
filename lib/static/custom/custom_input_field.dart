@@ -51,7 +51,7 @@ class CustomInputField extends StatelessWidget {
           obscureText: isPassword,
           decoration: InputDecoration(
             hintText: hintText,
-            // prefixIcon: icon != null ? Icon(icon, color: Colors.grey) : null,
+            
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
             suffixIcon: icon != null ? Icon(icon, color: Colors.grey) : null,
           ),

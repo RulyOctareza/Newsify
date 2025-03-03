@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+
 import 'package:flutter/material.dart';
 import 'package:newsify/static/style/typography.dart';
 
@@ -50,7 +50,7 @@ class _CustomPasswordFieldState extends State<CustomPasswordField> {
           },
           controller: widget.controller,
           obscureText:
-              !isPasswordVisible, // Menentukan apakah teks disembunyikan
+              !isPasswordVisible, 
           decoration: InputDecoration(
             hintText: widget.hintText,
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),

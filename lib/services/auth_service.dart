@@ -1,22 +1,38 @@
 import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
+
+import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 final _auth = FirebaseAuth.instance;
 
 class AuthService {
-  ValueNotifier<UserCredential?> userCredential = ValueNotifier(null);
+  final Rx<User?> user = Rx<User?>(null);
+
+  Future<User?> checkCurrentUser() async {
+    User? currentUser = _auth.currentUser;
+    if (currentUser != null) {
+      user.value = currentUser;
+    }
+    return currentUser;
+  }
 
   Future<String?> login(
     String emailController,
     String passwordController,
   ) async {
     try {
-      await _auth.signInWithEmailAndPassword(
+      UserCredential credential = await _auth.signInWithEmailAndPassword(
         email: emailController.trim(),
         password: passwordController.trim(),
       );
+
+      if (credential.user != null) {
+        await saveUserToPrefs(credential.user!.uid);
+        user.value = credential.user;
+      }
+
       return null;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'invalid-credential') {
@@ -24,20 +40,21 @@ class AuthService {
       } else if (e.code == 'invalid-email') {
         return "Format email tidak valid";
       }
-      return "Terjadi kesalahan";
+      return "Terjadi kesalahan: ${e.message}";
     }
   }
 
   Future<UserCredential?> signIn() async {
     try {
       UserCredential? credential = await signInWithGoogle();
-      userCredential.value = credential;
-      log(credential?.user?.email ?? "No email found");
+      if (credential != null && credential.user != null) {
+        user.value = credential.user;
+      }
+      return credential;
     } on Exception catch (e) {
       log("Login error: $e");
       return null;
     }
-    return null;
   }
 
   Future<String?> registerWithEmail(
@@ -45,7 +62,7 @@ class AuthService {
     String passwordController,
   ) async {
     try {
-      await _auth.createUserWithEmailAndPassword(
+      UserCredential _ = await _auth.createUserWithEmailAndPassword(
         email: emailController.trim(),
         password: passwordController.trim(),
       );
@@ -59,34 +76,62 @@ class AuthService {
       } else if (e.code == 'weak-password') {
         return "Password terlalu lemah";
       }
-      return "Terjadi kesalahan";
+      return "Terjadi kesalahan: ${e.message}";
     }
   }
 
-  Future<dynamic> signInWithGoogle() async {
+  Future<UserCredential?> signInWithGoogle() async {
     try {
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+      if (googleUser == null) return null;
 
-      final GoogleSignInAuthentication? googleAuth =
-          await googleUser?.authentication;
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
 
       final credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth?.accessToken,
-        idToken: googleAuth?.idToken,
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
       );
 
-      return await FirebaseAuth.instance.signInWithCredential(credential);
-    } on Exception catch (e) {
+      UserCredential userCredential = await FirebaseAuth.instance
+          .signInWithCredential(credential);
+
+      if (userCredential.user != null) {
+        await saveUserToPrefs(userCredential.user!.uid);
+      }
+
+      return userCredential;
+    } catch (e) {
       log('exception->$e');
+      return null;
     }
   }
 
-  Future<bool> signOutFromGoogle() async {
+  Future<bool> signOut() async {
     try {
       await FirebaseAuth.instance.signOut();
+      await GoogleSignIn().signOut();
+      await removeUserFromPrefs();
+      user.value = null;
       return true;
-    } on Exception catch (_) {
+    } on Exception catch (e) {
+      log('Logout error: $e');
       return false;
     }
+  }
+
+  Future<void> saveUserToPrefs(String uid) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('uid', uid);
+  }
+
+  Future<String?> getUserFromPrefs() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString('uid');
+  }
+
+  Future<void> removeUserFromPrefs() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.remove('uid');
   }
 }

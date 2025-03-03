@@ -41,8 +41,8 @@ class NewsHeader extends StatelessWidget implements PreferredSizeWidget {
                   () => SettingProfilePage(),
 
                   arguments: {
-                    'email': _auth.currentUser?.email,
-                    'fullname': _auth.currentUser?.displayName,
+                    'email': _auth.currentUser?.email ?? '',
+                    'fullname': _auth.currentUser?.displayName ?? '',
                     'photoURL': _auth.currentUser?.photoURL,
                   },
                 ),

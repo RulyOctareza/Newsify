@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:newsify/controller/auth_controller.dart';
 import 'package:newsify/controller/category_controller.dart';
 import 'package:newsify/screens/detail/dummy_category.dart';
 import 'package:newsify/screens/detail/dummy_news.dart';
@@ -9,6 +10,7 @@ import 'package:newsify/static/style/typography.dart';
 
 class HomePage extends StatelessWidget {
   final CategoryController categoryController = Get.put(CategoryController());
+  final AuthController authController = Get.find<AuthController>();
 
   HomePage({super.key});
 
