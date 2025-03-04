@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:newsify/controller/auth_controller.dart';
 import 'package:newsify/static/style/colors.dart';
 import 'package:newsify/static/style/typography.dart';
@@ -48,7 +49,11 @@ class _LoadingPageState extends State<LoadingPage> {
               style: boldTextStyle.copyWith(fontSize: 24, color: sageGreen),
             ),
             SizedBox(height: 20),
-            CircularProgressIndicator(),
+            Lottie.asset(
+              'assets/loading_animation.json',
+              width: 150,
+              height: 150,
+            ),
           ],
         ),
       ),

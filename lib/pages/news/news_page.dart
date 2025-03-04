@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:newsify/controller/auth_controller.dart';
 import 'package:newsify/controller/bookmark_controller.dart';
 import 'package:newsify/controller/category_controller.dart';
@@ -72,7 +73,13 @@ class NewsPage extends StatelessWidget {
             Expanded(
               child: Obx(() {
                 if (newsController.isLoading.value) {
-                  return const Center(child: CircularProgressIndicator());
+                  return Center(
+                    child: Lottie.asset(
+                      'assets/loading_animation.json',
+                      width: 150,
+                      height: 150,
+                    ),
+                  );
                 }
 
                 if (newsController.newsList.isEmpty) {

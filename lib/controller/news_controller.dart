@@ -2,14 +2,14 @@ import 'dart:developer';
 
 import 'package:get/get.dart';
 import 'package:newsify/model/news_api_model.dart';
-import 'package:newsify/services/api/api_endpoint.dart';
+import 'package:newsify/controller/data/api_services.dart';
 import 'package:newsify/controller/category_controller.dart';
 
 class NewsController extends GetxController {
   var isLoading = true.obs;
   var newsList = <NewsApiModel>[].obs;
   final CategoryController categoryController = Get.find();
-  final ApiEndpoint apiEndpoint = ApiEndpoint();
+  final ApiServices apiServices = ApiServices();
 
   @override
   void onInit() {
@@ -21,7 +21,7 @@ class NewsController extends GetxController {
     try {
       isLoading(true);
       final url = categoryController.getApiUrl();
-      final news = await apiEndpoint.getNews(url);
+      final news = await apiServices.getNews(url);
       if (news != null && news.isNotEmpty) {
         newsList.assignAll(news);
       } else {

@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'package:dio/dio.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'package:get/get.dart';
 import 'package:newsify/controller/category_controller.dart';
@@ -7,6 +8,7 @@ import 'package:newsify/model/news_api_model.dart';
 
 class ApiEndpoint {
   Dio dio = Dio();
+  final String apiKey = dotenv.env['NEWS_API_KEY'] ?? '';
 
   Future<List<NewsApiModel>?> getNews(String url) async {
     if (url.isEmpty) {

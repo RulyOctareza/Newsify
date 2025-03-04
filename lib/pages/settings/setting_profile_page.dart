@@ -42,7 +42,7 @@ class _SettingProfilePageState extends State<SettingProfilePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              // Foto Profil
+              
               CircleAvatar(
                 radius: 50,
                 backgroundColor: Colors.grey[300],

@@ -1,10 +1,13 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first, unnecessary_null_comparison
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:lottie/lottie.dart';
 import 'package:newsify/controller/bookmark_controller.dart';
 
-import 'package:newsify/services/api/api_endpoint.dart';
+import 'package:newsify/controller/data/api_services.dart';
 import 'package:newsify/static/card/news_headline_detail.dart';
 import 'package:newsify/static/custom/custom_appbar_news_header.dart';
 import 'package:newsify/static/style/colors.dart';
@@ -19,17 +22,26 @@ class DetailPageNews extends StatelessWidget {
     final BookmarkController bookmarkController =
         Get.find<BookmarkController>();
     return FutureBuilder(
-      future: ApiEndpoint().getNewsbyId(newsUrl),
+      future: ApiServices().getNewsbyId(newsUrl),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator());
+          log(newsUrl);
+          return Center(
+            child: Lottie.asset(
+              'assets/loading_animation.json',
+              width: 150,
+              height: 150,
+            ),
+          );
         }
 
         if (snapshot.hasError) {
+          log(newsUrl);
           return Center(child: Text('Error: ${snapshot.error}'));
         }
 
         if (!snapshot.hasData || snapshot.data == null) {
+          log(newsUrl);
           return const Center(child: Text('No news found'));
         }
 
@@ -97,9 +109,9 @@ class DetailPageNews extends StatelessWidget {
                   newsUrl: news.url!,
                   title: news.title!,
                   imageUrl:
-                      (news.urlToImage ?? '').isNotEmpty
+                      news.urlToImage?.isNotEmpty == true
                           ? news.urlToImage!
-                          : 'assets/image_onboarding2.jpg',
+                          : 'assets/image_onboarding1.jpg',
                 ),
 
                 Padding(
