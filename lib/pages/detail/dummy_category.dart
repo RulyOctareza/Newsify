@@ -1,7 +1,7 @@
 const List<String> categories = [
-  "Trending",
-  "Politics",
-  "Sports",
-  "Business",
-  "Tech",
+  "Apple",
+  "TechCrunch",
+  "Wall Street",
+  "Tesla",
+  "Sport",
 ];

@@ -57,6 +57,7 @@ class NewsPage extends StatelessWidget {
                             backgroundColor: Colors.grey,
                             onSelected: (bool selected) {
                               categoryController.selectCategory(category);
+                              newsController.fetchNews();
                             },
                           ),
                         ),

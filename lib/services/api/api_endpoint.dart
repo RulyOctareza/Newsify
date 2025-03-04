@@ -1,15 +1,14 @@
 import 'dart:developer';
-
 import 'package:dio/dio.dart';
+
 import 'package:get/get.dart';
+import 'package:newsify/controller/category_controller.dart';
 import 'package:newsify/model/news_api_model.dart';
 
 class ApiEndpoint {
   Dio dio = Dio();
-  static const url =
-      'https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=318123271b444e41b414c18aec72dd17';
 
-  Future<List<NewsApiModel>?> getNews() async {
+  Future<List<NewsApiModel>?> getNews(String url) async {
     if (url.isEmpty) {
       log("Error: URL is empty");
       return null;
@@ -31,6 +30,7 @@ class ApiEndpoint {
   }
 
   Future<NewsApiModel?> getNewsbyId(String id) async {
+    final String url = CategoryController().getApiUrl();
     try {
       final response = await dio.get(url);
 
