@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:newsify/controller/auth_controller.dart';
 
-import 'package:newsify/screens/onboarding/signup/signup_page.dart';
+import 'package:newsify/pages/onboarding/signup/signup_page.dart';
 
 import 'package:newsify/static/custom/custom_button.dart';
 import 'package:newsify/static/custom/custom_input_field.dart';
@@ -26,7 +26,7 @@ class _SignUpPageState extends State<LoginPage> {
   bool isRemembered = false;
 
   ValueNotifier<UserCredential?> userCredential = ValueNotifier(null);
-  final AuthController authController = Get.put(AuthController());
+  final AuthController authController = Get.find<AuthController>();
 
   @override
   void dispose() {

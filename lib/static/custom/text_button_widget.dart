@@ -5,6 +5,7 @@ import 'package:newsify/static/style/typography.dart';
 class TextButtonWidget extends StatelessWidget {
   final String title;
   final VoidCallback onPressed;
+  
   const TextButtonWidget({
     required this.onPressed,
     required this.title,

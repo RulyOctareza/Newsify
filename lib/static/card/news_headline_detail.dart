@@ -1,9 +1,19 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+
 import 'package:newsify/static/style/colors.dart';
 import 'package:newsify/static/style/typography.dart';
 
 class NewsHeadlineDetail extends StatelessWidget {
-  const NewsHeadlineDetail({super.key});
+  final String title;
+  final String imageUrl;
+  final String newsUrl;
+  const NewsHeadlineDetail({
+    super.key,
+    required this.newsUrl,
+    required this.title,
+    required this.imageUrl,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +36,7 @@ class NewsHeadlineDetail extends StatelessWidget {
                 ),
               ),
               child: Text(
-                "Twitter shareholders vote to approve\nElon Musk’s bid to buy the company",
+                title,
                 textAlign: TextAlign.center,
                 style: semiBoldTextStyle,
               ),
@@ -37,11 +47,15 @@ class NewsHeadlineDetail extends StatelessWidget {
                 bottomLeft: Radius.circular(16),
                 bottomRight: Radius.circular(16),
               ),
-              child: Image.asset(
-                'assets/image_onboarding2.jpg',
+              child: Image.network(
+                imageUrl,
                 fit: BoxFit.cover,
-                width: double.infinity,
-                height: 150,
+                errorBuilder: (context, error, stackTrace) {
+                  return Image.asset(
+                    'assets/image_onboarding2.jpg',
+                    fit: BoxFit.cover,
+                  );
+                },
               ),
             ),
           ],
@@ -49,16 +63,4 @@ class NewsHeadlineDetail extends StatelessWidget {
       ),
     );
   }
-}
-
-void main() {
-  runApp(
-    const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        backgroundColor: Colors.white,
-        body: Center(child: NewsHeadlineDetail()),
-      ),
-    ),
-  );
 }

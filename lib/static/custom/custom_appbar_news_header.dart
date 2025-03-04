@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:newsify/screens/settings/setting_profile_page.dart';
+import 'package:newsify/pages/settings/setting_profile_page.dart';
 
 import 'package:newsify/static/style/colors.dart';
 import 'package:newsify/static/style/typography.dart';

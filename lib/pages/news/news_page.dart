@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:newsify/controller/auth_controller.dart';
+import 'package:newsify/controller/bookmark_controller.dart';
 import 'package:newsify/controller/category_controller.dart';
-import 'package:newsify/screens/detail/dummy_category.dart';
-import 'package:newsify/screens/detail/dummy_news.dart';
+import 'package:newsify/controller/news_controller.dart';
+import 'package:newsify/pages/detail/dummy_category.dart';
 import 'package:newsify/static/card/news_card.dart';
 import 'package:newsify/static/custom/custom_appbar_news_header.dart';
 import 'package:newsify/static/style/typography.dart';
 
-class HomePage extends StatelessWidget {
+class NewsPage extends StatelessWidget {
   final CategoryController categoryController = Get.put(CategoryController());
   final AuthController authController = Get.find<AuthController>();
+  final NewsController newsController = Get.find<NewsController>();
+  final BookmarkController bookmarkController = Get.find<BookmarkController>();
 
-  HomePage({super.key});
+  NewsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,14 +31,13 @@ class HomePage extends StatelessWidget {
               decoration: InputDecoration(
                 hintText: "What are you looking for?",
                 hintStyle: regularTextStyle,
-
-                prefixIcon: Icon(Icons.search),
+                prefixIcon: const Icon(Icons.search),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
 
             // Categories
             SingleChildScrollView(
@@ -63,21 +65,34 @@ class HomePage extends StatelessWidget {
               ),
             ),
 
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
 
             // News List
             Expanded(
-              child: ListView.builder(
-                padding: EdgeInsets.symmetric(vertical: 5),
-                itemCount: news.length,
-                itemBuilder: (context, index) {
-                  return NewsCard(
-                    onTap: () => Get.toNamed('/detail'),
-                    imageUrl: news[index]['image']!,
-                    title: news[index]['title']!,
-                  );
-                },
-              ),
+              child: Obx(() {
+                if (newsController.isLoading.value) {
+                  return const Center(child: CircularProgressIndicator());
+                }
+
+                if (newsController.newsList.isEmpty) {
+                  return const Center(child: Text("No news found"));
+                }
+
+                return ListView.builder(
+                  padding: const EdgeInsets.symmetric(vertical: 5),
+                  itemCount: newsController.newsList.length,
+                  itemBuilder: (context, index) {
+                    final news = newsController.newsList[index];
+                    return NewsCard(
+                      news: news,
+                      onTap: () => Get.toNamed('/detail', arguments: news.url),
+                      imageUrl: news.urlToImage ?? '',
+                      title: news.title ?? '',
+                      description: news.description ?? '',
+                    );
+                  },
+                );
+              }),
             ),
           ],
         ),

@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:newsify/screens/menu/menu_widget.dart';
+import 'package:newsify/pages/menu/menu_widget.dart';
 import 'package:newsify/static/custom/text_button_widget.dart';
 import 'package:newsify/static/style/colors.dart';
 import 'package:newsify/static/style/typography.dart';
@@ -32,7 +32,7 @@ class Menu extends StatelessWidget {
                     child: IconButton(
                       icon: Icon(Icons.close_rounded, size: 24),
                       onPressed: () {
-                        Navigator.of(context).pop();
+                        Get.back();
                       },
                     ),
                   ),
@@ -90,7 +90,12 @@ class Menu extends StatelessWidget {
               ),
               Spacer(),
 
-              TextButtonWidget(onPressed: () {}, title: 'About Us'),
+              TextButtonWidget(
+                onPressed: () {
+                  Get.toNamed('/setting');
+                },
+                title: 'About Us',
+              ),
               TextButtonWidget(onPressed: () {}, title: 'Contact Us'),
               TextButtonWidget(
                 onPressed: () {},
