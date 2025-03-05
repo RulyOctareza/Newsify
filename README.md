@@ -86,6 +86,9 @@ dependencies:
 10. Share pop-up
     ![alt text](screenshot/share_popup.png)
 
+11. Detail Page
+    ![alt text](screenshot/detail_page.png)
+
 ## 📌 Cara Menjalankan Proyek
 
 1. Clone repositori ini:
