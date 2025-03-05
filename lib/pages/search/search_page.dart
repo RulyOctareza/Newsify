@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
@@ -9,7 +11,8 @@ import 'package:newsify/static/style/typography.dart';
 class SearchPage extends StatelessWidget {
   SearchPage({super.key});
 
-  final SearchNewsController searchController = Get.put(SearchNewsController());
+  final SearchNewsController searchController = Get.find();
+  final _debouncer = Debouncer(milliseconds: 500);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +25,9 @@ class SearchPage extends StatelessWidget {
           children: [
             TextField(
               onSubmitted: (keyword) {
-                searchController.searchNews(keyword);
+                _debouncer.run(() {
+                  searchController.searchNews(keyword);
+                });
               },
               decoration: InputDecoration(
                 hintText: "What are you looking for?",
@@ -71,5 +76,25 @@ class SearchPage extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class Debouncer {
+  final int milliseconds;
+  VoidCallback? _callback;
+  Timer? _timer;
+
+  Debouncer({required this.milliseconds});
+
+  void run(VoidCallback callback) {
+    _callback = callback;
+    _timer?.cancel();
+    _timer = Timer(Duration(milliseconds: milliseconds), _execute);
+  }
+
+  void _execute() {
+    if (_callback != null) {
+      _callback!();
+    }
   }
 }

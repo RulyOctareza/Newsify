@@ -23,7 +23,7 @@ class DetailPageNews extends StatelessWidget {
     final BookmarkController bookmarkController =
         Get.find<BookmarkController>();
     return FutureBuilder(
-      future: ApiServices().getNewsbyId(newsUrl),
+      future: ApiServices().getNewsbyId(newsUrl) ,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           log(newsUrl);

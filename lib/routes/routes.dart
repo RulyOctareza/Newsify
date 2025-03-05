@@ -1,8 +1,9 @@
 import 'package:get/get.dart';
 import 'package:newsify/bindings/boomark_binding.dart';
-import 'package:newsify/bindings/controller_bindings.dart';
+import 'package:newsify/bindings/auth_controller_bindings.dart';
 
 import 'package:newsify/bindings/news_bindings.dart';
+import 'package:newsify/bindings/search_news_bindings.dart';
 
 import 'package:newsify/pages/detail/detail_page_news.dart';
 import 'package:newsify/pages/news/news_page.dart';
@@ -14,6 +15,7 @@ import 'package:newsify/pages/onboarding/onboarding_page_three.dart';
 import 'package:newsify/pages/onboarding/onboarding_page_two.dart';
 import 'package:newsify/pages/onboarding/signup/signup_page.dart';
 import 'package:newsify/pages/saved/saved_page.dart';
+import 'package:newsify/pages/search/search_page.dart';
 import 'package:newsify/pages/settings/setting_profile_page.dart';
 
 class AppRoutes {
@@ -51,5 +53,10 @@ class AppRoutes {
       },
     ),
     GetPage(name: '/saved', page: () => SavedPage()),
+    GetPage(
+      name: '/searchpage',
+      page: () => SearchPage(),
+      binding: SearchNewsBindings(),
+    ),
   ];
 }

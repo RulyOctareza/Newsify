@@ -56,10 +56,9 @@ class ApiServices {
     return null;
   }
 
-  Future<List<NewsApiModel>?> searchNews(String keyword) async {
+  Future searchNews(String keyword) async {
     final String url = CategoryController().getSearchUrl(keyword);
-    final CategoryController categoryController =
-        Get.find<CategoryController>();
+    // final newsController = Get.find<NewsController>();
 
     try {
       final response = await dio.get(url);
@@ -71,6 +70,10 @@ class ApiServices {
             .toList();
       }
       return null;
+
+      // newsController.allNewsList.firstWhereOrNull(
+      //   (news) => news.url == keyword,
+      // );
     } catch (e) {
       log("Error fetching search results: $e");
       return null;

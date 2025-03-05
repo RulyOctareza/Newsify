@@ -6,7 +6,6 @@ import 'package:newsify/controller/bookmark_controller.dart';
 import 'package:newsify/controller/category_controller.dart';
 import 'package:newsify/controller/news_controller.dart';
 import 'package:newsify/pages/detail/dummy_category.dart';
-import 'package:newsify/pages/search/search_page.dart';
 import 'package:newsify/static/card/news_card.dart';
 import 'package:newsify/static/custom/custom_appbar_news_header.dart';
 import 'package:newsify/static/style/colors.dart';
@@ -33,7 +32,7 @@ class NewsPage extends StatelessWidget {
             // Search Bar
             TextField(
               onTap: () {
-                Get.to(() => SearchPage());
+                Get.toNamed('/searchpage');
               },
               decoration: InputDecoration(
                 hintText: "What are you looking for?",
