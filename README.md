@@ -58,10 +58,32 @@ dependencies:
 
 2. Onboarding Screen
    ![alt text](screenshot/image1.png)
+
    ![alt text](screenshot/image2.png)
+
    ![alt text](<screenshot/iScreen Shoter - qemu-system-aarch64 - 250305112528.png>)
 
-   
+3. Login Page
+![alt text](screenshot/4.png)
+
+4. Sign Up Page
+![alt text](screenshot/5.png)
+
+5. News Page
+![alt text](screenshot/6.png)
+
+6. Search Page
+![alt text](screenshot/7.png)
+
+7. Saved Page
+![alt text](screenshot/8.png)
+
+8. Menu Page
+![alt text](screenshot/menu_page.png)
+
+9. Settings Page
+![alt text](screenshot/settings_page.png)
+
 
 ## 📌 Cara Menjalankan Proyek
 
