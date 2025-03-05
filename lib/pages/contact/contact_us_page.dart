@@ -28,7 +28,6 @@ class ContactUsPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            // Gambar Profil
             CircleAvatar(
               radius: 80,
               backgroundImage: NetworkImage(
@@ -37,7 +36,6 @@ class ContactUsPage extends StatelessWidget {
             ),
             const SizedBox(height: 20),
 
-            // Nama dan Tag
             const Text(
               'Fatchurizkia Ruly Octareza',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
@@ -53,7 +51,6 @@ class ContactUsPage extends StatelessWidget {
             ),
             const SizedBox(height: 20),
 
-            // Deskripsi Diri
             Text(
               "I am passionate about mobile application development and currently learning Dart, Flutter, and Fullstack Software Engineering.\n I am fluent in Indonesian, Korean (for work purposes), and English (both written and general conversation).",
               textAlign: TextAlign.center,
@@ -61,7 +58,6 @@ class ContactUsPage extends StatelessWidget {
             ),
             const SizedBox(height: 30),
 
-            // Informasi Kontak
             _buildContactInfo(
               icon: Icons.email,
               label: 'Email',
@@ -92,7 +88,6 @@ class ContactUsPage extends StatelessWidget {
     );
   }
 
-  // Widget untuk menampilkan informasi kontak
   Widget _buildContactInfo({
     required IconData icon,
     required String label,

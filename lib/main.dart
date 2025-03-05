@@ -30,6 +30,8 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         initialRoute: '/',
         getPages: AppRoutes.routes,
+        transitionDuration: Duration(milliseconds: 500),
+        defaultTransition: Transition.size,
         theme: lightTheme,
         darkTheme: darkTheme,
         themeMode:

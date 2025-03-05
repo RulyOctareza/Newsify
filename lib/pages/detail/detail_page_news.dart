@@ -60,7 +60,8 @@ class DetailPageNews extends StatelessWidget {
                   children: [
                     IconButton(
                       onPressed: () {
-                        Get.toNamed('/homepage');
+                        Get.toNamed('/homepage' ,);
+                        
                       },
                       icon: Icon(Icons.arrow_back, size: 28, color: darkGreen),
                     ),

@@ -25,6 +25,8 @@ class AppRoutes {
       name: '/',
       page: () => LoadingPage(),
       binding: AuthControllerBindings(),
+  
+      
     ),
     GetPage(name: '/onboarding1', page: () => OnboardingPageOne()),
     GetPage(name: '/onboarding2', page: () => OnboardingPageTwo()),
