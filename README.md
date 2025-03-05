@@ -89,6 +89,9 @@ dependencies:
 11. Detail Page
     ![alt text](screenshot/detail_page.png)
 
+12. Error Page
+    ![alt text](<screenshot/error page.png>)
+
 ## 📌 Cara Menjalankan Proyek
 
 1. Clone repositori ini:
