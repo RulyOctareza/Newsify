@@ -55,4 +55,23 @@ class ApiServices {
     }
     return null;
   }
+
+  Future<List<NewsApiModel>?> searchNews(String keyword) async {
+    final String url = CategoryController().getApiUrl();
+   
+    try {
+      final response = await dio.get(url);
+
+      if (response.statusCode == 200) {
+        final data = response.data;
+        return (data['articles'] as List)
+            .map((e) => NewsApiModel.fromJson(e))
+            .toList();
+      }
+      return null;
+    } catch (e) {
+      log("Error fetching search results: $e");
+      return null;
+    }
+  }
 }

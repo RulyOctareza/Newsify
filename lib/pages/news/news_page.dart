@@ -6,8 +6,10 @@ import 'package:newsify/controller/bookmark_controller.dart';
 import 'package:newsify/controller/category_controller.dart';
 import 'package:newsify/controller/news_controller.dart';
 import 'package:newsify/pages/detail/dummy_category.dart';
+import 'package:newsify/pages/search/search_page.dart';
 import 'package:newsify/static/card/news_card.dart';
 import 'package:newsify/static/custom/custom_appbar_news_header.dart';
+import 'package:newsify/static/style/colors.dart';
 import 'package:newsify/static/style/typography.dart';
 
 class NewsPage extends StatelessWidget {
@@ -21,6 +23,7 @@ class NewsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: whiteColor,
       appBar: NewsHeader(),
       body: Padding(
         padding: const EdgeInsets.all(12.0),
@@ -29,6 +32,9 @@ class NewsPage extends StatelessWidget {
           children: [
             // Search Bar
             TextField(
+              onTap: () {
+                Get.to(() => SearchPage());
+              },
               decoration: InputDecoration(
                 hintText: "What are you looking for?",
                 hintStyle: regularTextStyle,

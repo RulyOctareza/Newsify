@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import 'package:newsify/pages/settings/setting_profile_page.dart';
 
 import 'package:newsify/static/style/colors.dart';
@@ -24,6 +25,7 @@ class NewsHeader extends StatelessWidget implements PreferredSizeWidget {
               Get.toNamed('/menu');
             },
           ),
+
           Spacer(),
           TextButton(
             onPressed: () {
@@ -35,6 +37,7 @@ class NewsHeader extends StatelessWidget implements PreferredSizeWidget {
             ),
           ),
           Spacer(),
+
           InkWell(
             onTap:
                 () => Get.to(
