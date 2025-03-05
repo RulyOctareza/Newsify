@@ -45,7 +45,6 @@ dependencies:
   google_sign_in: ^6.2.2
   shared_preferences: ^2.5.2
   dio: ^5.8.0+1
-  http: ^1.3.0
   intl: ^0.20.2
   flutter_dotenv: ^5.2.1
   lottie: ^3.3.1
@@ -64,26 +63,25 @@ dependencies:
    ![alt text](<screenshot/iScreen Shoter - qemu-system-aarch64 - 250305112528.png>)
 
 3. Login Page
-![alt text](screenshot/4.png)
+   ![alt text](screenshot/4.png)
 
 4. Sign Up Page
-![alt text](screenshot/5.png)
+   ![alt text](screenshot/5.png)
 
 5. News Page
-![alt text](screenshot/6.png)
+   ![alt text](screenshot/6.png)
 
 6. Search Page
-![alt text](screenshot/7.png)
+   ![alt text](screenshot/7.png)
 
 7. Saved Page
-![alt text](screenshot/8.png)
+   ![alt text](screenshot/8.png)
 
 8. Menu Page
-![alt text](screenshot/menu_page.png)
+   ![alt text](screenshot/menu_page.png)
 
 9. Settings Page
-![alt text](screenshot/settings_page.png)
-
+   ![alt text](screenshot/settings_page.png)
 
 ## 📌 Cara Menjalankan Proyek
 
