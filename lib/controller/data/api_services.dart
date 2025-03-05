@@ -57,8 +57,10 @@ class ApiServices {
   }
 
   Future<List<NewsApiModel>?> searchNews(String keyword) async {
-    final String url = CategoryController().getApiUrl();
-   
+    final String url = CategoryController().getSearchUrl(keyword);
+    final CategoryController categoryController =
+        Get.find<CategoryController>();
+
     try {
       final response = await dio.get(url);
 

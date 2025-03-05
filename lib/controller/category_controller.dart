@@ -13,4 +13,7 @@ class CategoryController extends GetxController {
   String getApiUrl() {
     return ApiEndpoints.getNewsUrl(selectedCategory.value, apiKey);
   }
+    String getSearchUrl(String keyword) {
+    return ApiEndpoints.getSearchUrl(keyword, selectedCategory.value, apiKey);
+  }
 }

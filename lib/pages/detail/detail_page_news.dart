@@ -27,11 +27,14 @@ class DetailPageNews extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           log(newsUrl);
-          return Center(
-            child: Lottie.asset(
-              'assets/loading_animation.json',
-              width: 150,
-              height: 150,
+          return Scaffold(
+            backgroundColor: whiteColor,
+            body: Center(
+              child: Lottie.asset(
+                'assets/loading_animation.json',
+                width: 150,
+                height: 150,
+              ),
             ),
           );
         }
