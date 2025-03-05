@@ -53,29 +53,29 @@ dependencies:
 ## Berikut Screenshot dari Aplikasi ini
 
 1. Splashscreen(loading screen)
-   ![alt text](screenshot/image.png)
+   ![alt text](screenshot/splash_screen.png)
 
 2. Onboarding Screen
-   ![alt text](screenshot/image1.png)
+   ![alt text](screenshot/onboarding1.png)
 
-   ![alt text](screenshot/image2.png)
+![alt text](screenshot/onboarding2.png)
 
-   ![alt text](<screenshot/iScreen Shoter - qemu-system-aarch64 - 250305112528.png>)
+![alt text](screenshot/onboarding3.png)
 
 3. Login Page
-   ![alt text](screenshot/4.png)
+   ![alt text](screenshot/login_page.png)
 
 4. Sign Up Page
-   ![alt text](screenshot/5.png)
+   ![alt text](screenshot/signup_page.png)
 
 5. News Page
-   ![alt text](screenshot/6.png)
+   ![alt text](screenshot/news_page.png)
 
 6. Search Page
-   ![alt text](screenshot/7.png)
+   ![alt text](screenshot/search_page.png)
 
 7. Saved Page
-   ![alt text](screenshot/8.png)
+   ![alt text](screenshot/saved_page.png)
 
 8. Menu Page
    ![alt text](screenshot/menu_page.png)
