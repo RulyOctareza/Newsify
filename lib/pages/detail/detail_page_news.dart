@@ -8,6 +8,7 @@ import 'package:lottie/lottie.dart';
 import 'package:newsify/controller/bookmark_controller.dart';
 
 import 'package:newsify/controller/data/api_services.dart';
+import 'package:newsify/pages/error/error_page.dart';
 import 'package:newsify/static/card/news_headline_detail.dart';
 import 'package:newsify/static/custom/custom_appbar_news_header.dart';
 import 'package:newsify/static/style/colors.dart';
@@ -41,8 +42,8 @@ class DetailPageNews extends StatelessWidget {
         }
 
         if (!snapshot.hasData || snapshot.data == null) {
-          log(newsUrl);
-          return const Center(child: Text('No news found'));
+          log('Ini adalah alamat $newsUrl $snapshot');
+          return SomethingWrong();
         }
 
         final news = snapshot.data!;
@@ -123,7 +124,7 @@ class DetailPageNews extends StatelessWidget {
                       Text(
                         news.publishedAt!.toString() != null
                             ? DateFormat(
-                              'EEE, dd-mm-yy, HH:mm',
+                              'EEE, dd-MM-yy, HH:mm',
                             ).format(news.publishedAt!).toString()
                             : '',
                         textAlign: TextAlign.left,
@@ -131,7 +132,7 @@ class DetailPageNews extends StatelessWidget {
                       ),
                       SizedBox(width: 12),
                       Text(
-                        'Author : ${news.author!}',
+                        'Author : ${news.author ?? "unknown"}',
                         textAlign: TextAlign.left,
                         style: semiBoldTextStyle,
                       ),

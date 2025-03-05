@@ -93,7 +93,13 @@ class NewsPage extends StatelessWidget {
                     final news = newsController.newsList[index];
                     return NewsCard(
                       news: news,
-                      onTap: () => Get.toNamed('/detail', arguments: news.url),
+                      onTap: () {
+                        if (news.url != null && news.url!.isNotEmpty) {
+                          Get.toNamed('/detail', arguments: news.url);
+                        } else {
+                          Get.snackbar('Error', 'Invalid news URL');
+                        }
+                      },
                       imageUrl: news.urlToImage ?? '',
                       title: news.title ?? '',
                       description: news.description ?? '',

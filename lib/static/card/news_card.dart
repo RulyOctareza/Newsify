@@ -36,18 +36,25 @@ class NewsCard extends StatelessWidget {
             children: [
               Expanded(
                 flex: 2,
-                child: Image.network(
-                  imageUrl.isNotEmpty ? imageUrl : '',
-                  fit: BoxFit.cover,
-                  height: 150,
-                  errorBuilder: (context, error, stackTrace) {
-                    return Image.asset(
-                      'assets/image_onboarding2.jpg',
-                      fit: BoxFit.cover,
-                      height: 150,
-                    );
-                  },
-                ),
+                child:
+                    imageUrl.isNotEmpty
+                        ? Image.network(
+                          imageUrl,
+                          fit: BoxFit.cover,
+                          height: 150,
+                          errorBuilder: (context, error, stackTrace) {
+                            return Image.asset(
+                              'assets/image_onboarding2.jpg',
+                              fit: BoxFit.cover,
+                              height: 150,
+                            );
+                          },
+                        )
+                        : Image.asset(
+                          'assets/image_onboarding2.jpg',
+                          fit: BoxFit.cover,
+                          height: 150,
+                        ),
               ),
               Expanded(
                 flex: 3,

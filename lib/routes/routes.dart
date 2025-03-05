@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:newsify/bindings/boomark_binding.dart';
-import 'package:newsify/bindings/controller_bindings.dart';
+import 'package:newsify/bindings/auth_controller_bindings.dart';
 import 'package:newsify/bindings/news_bindings.dart';
 import 'package:newsify/pages/detail/detail_page_news.dart';
 import 'package:newsify/pages/news/news_page.dart';
@@ -19,7 +19,7 @@ class AppRoutes {
     GetPage(
       name: '/',
       page: () => LoadingPage(),
-      binding: ControllerBindings(),
+      binding: AuthControllerBindings(),
     ),
     GetPage(name: '/onboarding1', page: () => OnboardingPageOne()),
     GetPage(name: '/onboarding2', page: () => OnboardingPageTwo()),
@@ -29,13 +29,17 @@ class AppRoutes {
     GetPage(
       name: '/homepage',
       page: () => NewsPage(),
-      bindings: [ControllerBindings(), NewsBindings(), BoomarkBinding()],
+      bindings: [AuthControllerBindings(), NewsBindings(), BoomarkBinding()],
     ),
-    GetPage(name: '/menu', page: () => Menu(), binding: ControllerBindings()),
+    GetPage(
+      name: '/menu',
+      page: () => Menu(),
+      binding: AuthControllerBindings(),
+    ),
     GetPage(
       name: '/setting',
       page: () => SettingProfilePage(),
-      binding: ControllerBindings(),
+      binding: AuthControllerBindings(),
     ),
     GetPage(
       name: '/detail',

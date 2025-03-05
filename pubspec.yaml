@@ -38,4 +38,3 @@ flutter:
   assets:
     - assets/
     - .env
-    - assets/image_onboarding1.jpg
