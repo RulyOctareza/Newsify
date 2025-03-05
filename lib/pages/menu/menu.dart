@@ -102,7 +102,12 @@ class Menu extends StatelessWidget {
                 },
                 title: 'About Us',
               ),
-              TextButtonWidget(onPressed: () {}, title: 'Contact Us'),
+              TextButtonWidget(
+                onPressed: () {
+                  Get.toNamed('/contact');
+                },
+                title: 'Contact Us',
+              ),
               TextButtonWidget(
                 onPressed: () {},
                 title: 'Rate us on Play Store',

@@ -4,6 +4,7 @@ import 'package:newsify/bindings/auth_controller_bindings.dart';
 
 import 'package:newsify/bindings/news_bindings.dart';
 import 'package:newsify/bindings/search_news_bindings.dart';
+import 'package:newsify/pages/contact/contact_us_page.dart';
 
 import 'package:newsify/pages/detail/detail_page_news.dart';
 import 'package:newsify/pages/news/news_page.dart';
@@ -30,6 +31,7 @@ class AppRoutes {
     GetPage(name: '/onboarding3', page: () => OnboardingPageThree()),
     GetPage(name: '/login', page: () => LoginPage()),
     GetPage(name: '/signup', page: () => SignUpPage()),
+    GetPage(name: '/contact', page: () => ContactUsPage()),
     GetPage(
       name: '/homepage',
       page: () => NewsPage(),
