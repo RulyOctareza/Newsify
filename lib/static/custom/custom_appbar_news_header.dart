@@ -25,7 +25,8 @@ class NewsHeader extends StatelessWidget implements PreferredSizeWidget {
               Get.toNamed('/menu');
             },
           ),
-
+          Spacer(),
+          Spacer(),
           Spacer(),
           TextButton(
             onPressed: () {
@@ -36,6 +37,7 @@ class NewsHeader extends StatelessWidget implements PreferredSizeWidget {
               style: boldTextStyle.copyWith(fontSize: 30, color: sageGreen),
             ),
           ),
+
           IconButton(
             icon: Obx(() {
               return Icon(
@@ -48,7 +50,6 @@ class NewsHeader extends StatelessWidget implements PreferredSizeWidget {
               themeController.toggleTheme();
             },
           ),
-          Spacer(),
 
           InkWell(
             onTap:
