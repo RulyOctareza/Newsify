@@ -33,7 +33,6 @@ class _SettingProfilePageState extends State<SettingProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[200],
       appBar: NewsHeader(),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -42,7 +41,6 @@ class _SettingProfilePageState extends State<SettingProfilePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              
               CircleAvatar(
                 radius: 50,
                 backgroundColor: Colors.grey[300],

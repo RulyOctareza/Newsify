@@ -9,6 +9,7 @@ import 'package:newsify/controller/bookmark_controller.dart';
 
 import 'package:newsify/controller/data/api_services.dart';
 import 'package:newsify/pages/error/error_page.dart';
+import 'package:newsify/static/card/dialog_share.dart';
 import 'package:newsify/static/card/news_headline_detail.dart';
 import 'package:newsify/static/custom/custom_appbar_news_header.dart';
 import 'package:newsify/static/style/colors.dart';
@@ -23,12 +24,11 @@ class DetailPageNews extends StatelessWidget {
     final BookmarkController bookmarkController =
         Get.find<BookmarkController>();
     return FutureBuilder(
-      future: ApiServices().getNewsbyId(newsUrl) ,
+      future: ApiServices().getNewsbyId(newsUrl),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           log(newsUrl);
           return Scaffold(
-            backgroundColor: whiteColor,
             body: Center(
               child: Lottie.asset(
                 'assets/loading_animation.json',
@@ -66,7 +66,9 @@ class DetailPageNews extends StatelessWidget {
                     ),
                     Spacer(),
                     InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        showShareDialog(context);
+                      },
                       child: SizedBox(
                         height: 28,
                         width: 55,

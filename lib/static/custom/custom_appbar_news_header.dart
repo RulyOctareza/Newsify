@@ -1,9 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:newsify/controller/theme_controller.dart';
 import 'package:newsify/pages/settings/setting_profile_page.dart';
-
 import 'package:newsify/static/style/colors.dart';
 import 'package:newsify/static/style/typography.dart';
 
@@ -14,6 +13,7 @@ class NewsHeader extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeController themeController = Get.find();
     return AppBar(
       automaticallyImplyLeading: false,
       backgroundColor: darkGreen,
@@ -35,6 +35,18 @@ class NewsHeader extends StatelessWidget implements PreferredSizeWidget {
               "WORLD NOW",
               style: boldTextStyle.copyWith(fontSize: 30, color: sageGreen),
             ),
+          ),
+          IconButton(
+            icon: Obx(() {
+              return Icon(
+                themeController.isDarkMode.value
+                    ? Icons.light_mode
+                    : Icons.dark_mode,
+              );
+            }),
+            onPressed: () {
+              themeController.toggleTheme();
+            },
           ),
           Spacer(),
 

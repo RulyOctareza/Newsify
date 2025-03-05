@@ -39,7 +39,7 @@ class NewsHeadlineDetail extends StatelessWidget {
               child: Text(
                 title,
                 textAlign: TextAlign.center,
-                style: semiBoldTextStyle,
+                style: semiBoldTextStyle.copyWith(color: Colors.black),
               ),
             ),
 

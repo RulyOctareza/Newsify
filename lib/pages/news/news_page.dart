@@ -8,7 +8,6 @@ import 'package:newsify/controller/news_controller.dart';
 import 'package:newsify/pages/detail/dummy_category.dart';
 import 'package:newsify/static/card/news_card.dart';
 import 'package:newsify/static/custom/custom_appbar_news_header.dart';
-import 'package:newsify/static/style/colors.dart';
 import 'package:newsify/static/style/typography.dart';
 
 class NewsPage extends StatelessWidget {
@@ -22,7 +21,6 @@ class NewsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: whiteColor,
       appBar: NewsHeader(),
       body: Padding(
         padding: const EdgeInsets.all(12.0),

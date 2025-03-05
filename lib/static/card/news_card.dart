@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:newsify/controller/bookmark_controller.dart';
 import 'package:newsify/model/news_api_model.dart';
 import 'package:newsify/static/card/dialog_share.dart';
-import 'package:newsify/static/style/colors.dart';
+import 'package:newsify/static/style/typography.dart';
 
 class NewsCard extends StatelessWidget {
   final NewsApiModel news;
@@ -63,7 +63,10 @@ class NewsCard extends StatelessWidget {
                   height: 150,
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
-                      colors: [green, sageGreen],
+                      colors: [
+                        Theme.of(context).primaryColor,
+                        Theme.of(context).colorScheme.secondary,
+                      ],
                       begin: Alignment.center,
                       end: Alignment.bottomRight,
                     ),
@@ -77,21 +80,13 @@ class NewsCard extends StatelessWidget {
                     children: [
                       Text(
                         title,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                        ),
+                        style: boldTextStyle,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
                       Text(
                         description ?? '',
-                        style: const TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black54,
-                        ),
+                        style: regularTextStyle,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                       ),

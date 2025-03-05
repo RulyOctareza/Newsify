@@ -9,12 +9,11 @@ import 'package:newsify/static/style/typography.dart';
 class Menu extends StatelessWidget {
   final String? name;
 
-  const Menu({super.key, this.name});
-
+  Menu({super.key, this.name});
+  final _auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: green,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.only(
@@ -40,22 +39,29 @@ class Menu extends StatelessWidget {
               ),
               Row(
                 children: [
+                  Spacer(),
                   Flexible(
                     child: CircleAvatar(
-                      foregroundImage: NetworkImage(
-                        '${FirebaseAuth.instance.currentUser?.photoURL}',
-                      ),
+                      radius: 50,
+                      backgroundColor: Colors.grey[300],
+                      backgroundImage:
+                          _auth.currentUser?.photoURL != null
+                              ? NetworkImage(_auth.currentUser!.photoURL!)
+                              : AssetImage('assets/logo_small.png')
+                                  as ImageProvider,
                     ),
                   ),
                   SizedBox(width: 12),
                   Text(
-                    '${FirebaseAuth.instance.currentUser?.displayName}',
+                    _auth.currentUser?.displayName != null
+                        ? '${_auth.currentUser?.displayName}'
+                        : '${_auth.currentUser?.email}',
                     style: semiBoldTextStyle.copyWith(
-                      fontSize: 26,
-                      color: darkGreen,
+                      fontSize: 22,
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
+                  Spacer(),
                 ],
               ),
               SizedBox(height: 35),
