@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 import 'package:newsify/services/auth_service.dart';
 import 'package:newsify/static/style/colors.dart';
@@ -8,6 +9,7 @@ import 'package:newsify/static/style/colors.dart';
 class AuthController extends GetxController {
   final AuthService _authService = AuthService();
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final GetStorage _storage = GetStorage();
 
   final Rx<User?> currentUser = Rx<User?>(null);
 
@@ -46,6 +48,8 @@ class AuthController extends GetxController {
       bool success = await _authService.signOut();
       if (success) {
         currentUser.value = null;
+        _storage.remove('photoUrl');
+        _storage.remove('username');
         Get.offAllNamed('/login');
       } else {
         Get.snackbar(

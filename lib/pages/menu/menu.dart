@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:newsify/controller/settings_profile_controller.dart';
 import 'package:newsify/pages/menu/menu_widget.dart';
+
 import 'package:newsify/static/custom/text_button_widget.dart';
 import 'package:newsify/static/style/colors.dart';
 import 'package:newsify/static/style/typography.dart';
@@ -11,6 +15,8 @@ class Menu extends StatelessWidget {
 
   Menu({super.key, this.name});
   final _auth = FirebaseAuth.instance;
+  final SettingsProfileController _settingsProfileController =
+      Get.find(); 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,33 +43,40 @@ class Menu extends StatelessWidget {
                   ),
                 ],
               ),
-              Row(
-                children: [
-                  Spacer(),
-                  Flexible(
-                    child: CircleAvatar(
-                      radius: 50,
-                      backgroundColor: Colors.grey[300],
-                      backgroundImage:
-                          _auth.currentUser?.photoURL != null
-                              ? NetworkImage(_auth.currentUser!.photoURL!)
-                              : AssetImage('assets/logo_small.png')
-                                  as ImageProvider,
+              Obx(() {
+                final String username =
+                    _settingsProfileController.username.isNotEmpty
+                        ? _settingsProfileController.username
+                        : _auth.currentUser?.displayName ?? 'User';
+                return Row(
+                  children: [
+                    Spacer(),
+                    Flexible(
+                      child: CircleAvatar(
+                        backgroundImage:
+                            _settingsProfileController.photoUrl.isNotEmpty
+                                ? FileImage(
+                                      File(_settingsProfileController.photoUrl),
+                                    )
+                                    as ImageProvider
+                                : _auth.currentUser?.photoURL != null
+                                ? NetworkImage('${_auth.currentUser?.photoURL}')
+                                : AssetImage('assets/logo_small.png')
+                                    as ImageProvider,
+                      ),
                     ),
-                  ),
-                  SizedBox(width: 12),
-                  Text(
-                    _auth.currentUser?.displayName != null
-                        ? '${_auth.currentUser?.displayName}'
-                        : '${_auth.currentUser?.email}',
-                    style: semiBoldTextStyle.copyWith(
-                      fontSize: 22,
-                      overflow: TextOverflow.ellipsis,
+                    SizedBox(width: 12),
+                    Text(
+                      username,
+                      style: semiBoldTextStyle.copyWith(
+                        fontSize: 22,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
-                  ),
-                  Spacer(),
-                ],
-              ),
+                    Spacer(),
+                  ],
+                );
+              }),
               SizedBox(height: 35),
               MenuWidget(
                 title: 'Home',
@@ -81,15 +94,7 @@ class Menu extends StatelessWidget {
               ),
               MenuWidget(
                 ontap: () {
-                  Get.toNamed(
-                    '/setting',
-                    arguments: {
-                      'email': FirebaseAuth.instance.currentUser?.email,
-                      'fullname':
-                          FirebaseAuth.instance.currentUser?.displayName,
-                      'photoURL': FirebaseAuth.instance.currentUser?.photoURL,
-                    },
-                  );
+                  Get.toNamed('/setting');
                 },
                 title: 'Settings',
                 color: darkGreen,

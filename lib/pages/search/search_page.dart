@@ -17,7 +17,6 @@ class SearchPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[200],
       appBar: NewsHeader(),
       body: Padding(
         padding: const EdgeInsets.all(20.0),

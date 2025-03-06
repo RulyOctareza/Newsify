@@ -4,6 +4,7 @@ import 'package:newsify/bindings/auth_controller_bindings.dart';
 
 import 'package:newsify/bindings/news_bindings.dart';
 import 'package:newsify/bindings/search_news_bindings.dart';
+import 'package:newsify/bindings/settings_controller_bindings.dart';
 import 'package:newsify/pages/contact/contact_us_page.dart';
 
 import 'package:newsify/pages/detail/detail_page_news.dart';
@@ -25,8 +26,6 @@ class AppRoutes {
       name: '/',
       page: () => LoadingPage(),
       binding: AuthControllerBindings(),
-  
-      
     ),
     GetPage(name: '/onboarding1', page: () => OnboardingPageOne()),
     GetPage(name: '/onboarding2', page: () => OnboardingPageTwo()),
@@ -42,12 +41,12 @@ class AppRoutes {
     GetPage(
       name: '/menu',
       page: () => Menu(),
-      binding: AuthControllerBindings(),
+      bindings: [AuthControllerBindings(), SettingsControllerBindings()],
     ),
     GetPage(
       name: '/setting',
       page: () => SettingProfilePage(),
-      bindings: [AuthControllerBindings()],
+      bindings: [AuthControllerBindings(), SettingsControllerBindings()],
     ),
     GetPage(
       name: '/detail',

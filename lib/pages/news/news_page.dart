@@ -27,13 +27,13 @@ class NewsPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Search Bar
             TextField(
               onTap: () {
                 Get.toNamed('/searchpage');
               },
               decoration: InputDecoration(
                 hintText: "What are you looking for?",
+
                 hintStyle: regularTextStyle,
                 prefixIcon: const Icon(Icons.search),
                 border: OutlineInputBorder(
@@ -43,7 +43,6 @@ class NewsPage extends StatelessWidget {
             ),
             const SizedBox(height: 10),
 
-            // Categories
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
@@ -72,7 +71,6 @@ class NewsPage extends StatelessWidget {
 
             const SizedBox(height: 10),
 
-            // News List
             Expanded(
               child: Obx(() {
                 if (newsController.isLoading.value) {
