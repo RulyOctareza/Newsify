@@ -39,10 +39,12 @@ dependencies:
   cupertino_icons: ^1.0.8
   google_fonts: ^6.2.1
   get: ^4.7.2
-
+  url_launcher: ^6.3.1
   firebase_core: ^3.12.0
   firebase_auth: ^5.5.0
   google_sign_in: ^6.2.2
+  get_storage: ^2.1.1
+  image_picker: ^1.1.2
   shared_preferences: ^2.5.2
   dio: ^5.8.0+1
   intl: ^0.20.2
