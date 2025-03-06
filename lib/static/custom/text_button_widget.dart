@@ -22,6 +22,7 @@ class TextButtonWidget extends StatelessWidget {
           fontSize: 20,
           color: Theme.of(context).primaryColor,
         ),
+        textAlign: TextAlign.center,
       ),
     );
   }

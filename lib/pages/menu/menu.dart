@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:newsify/controller/settings_profile_controller.dart';
+import 'package:newsify/controller/url_launcher.dart';
 import 'package:newsify/pages/menu/menu_widget.dart';
 
 import 'package:newsify/static/custom/text_button_widget.dart';
@@ -15,8 +16,8 @@ class Menu extends StatelessWidget {
 
   Menu({super.key, this.name});
   final _auth = FirebaseAuth.instance;
-  final SettingsProfileController _settingsProfileController =
-      Get.find(); 
+  final SettingsProfileController _settingsProfileController = Get.find();
+  final UrlLauncher _urlLauncher = UrlLauncher();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -101,12 +102,12 @@ class Menu extends StatelessWidget {
               ),
               Spacer(),
 
-              TextButtonWidget(
-                onPressed: () {
-                  Get.toNamed('/setting');
-                },
-                title: 'About Us',
-              ),
+              // TextButtonWidget(
+              //   onPressed: () {
+              //     Get.toNamed('/setting');
+              //   },
+              //   title: 'About Us',
+              // ),
               TextButtonWidget(
                 onPressed: () {
                   Get.toNamed('/contact');
@@ -114,10 +115,12 @@ class Menu extends StatelessWidget {
                 title: 'Contact Us',
               ),
               TextButtonWidget(
-                onPressed: () {},
-                title: 'Rate us on Play Store',
+                onPressed: () {
+                  _urlLauncher.showRateUsDialog(context);
+                },
+                title: 'Rate us on Play Store/\nApp Store',
               ),
-              TextButtonWidget(onPressed: () {}, title: 'Write a Feedback'),
+              //    TextButtonWidget(onPressed: () {}, title: 'Write a Feedback'),
             ],
           ),
         ),
