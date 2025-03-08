@@ -27,6 +27,9 @@ dependencies:
   get_storage: ^2.1.1
   image_picker: ^1.1.2
   url_launcher: ^6.3.1
+  sqflite: ^2.4.2
+  path_provider: ^2.1.5
+  path: ^1.9.1
 
 dev_dependencies:
   flutter_test:

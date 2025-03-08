@@ -7,6 +7,7 @@ class CustomInputField extends StatelessWidget {
   final String hintText;
   final bool isPassword;
   final IconData? icon;
+  final int? maxLines;
 
   const CustomInputField({
     super.key,
@@ -15,6 +16,7 @@ class CustomInputField extends StatelessWidget {
     required this.hintText,
     this.isPassword = false,
     this.icon,
+    this.maxLines,
   });
 
   @override
@@ -36,6 +38,8 @@ class CustomInputField extends StatelessWidget {
         ),
         SizedBox(height: 5),
         TextFormField(
+          maxLines: maxLines,
+
           validator: (value) {
             if (value == null || value.isEmpty) {
               return "Email tidak boleh kosong";
@@ -51,7 +55,7 @@ class CustomInputField extends StatelessWidget {
           obscureText: isPassword,
           decoration: InputDecoration(
             hintText: hintText,
-            
+
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
             suffixIcon: icon != null ? Icon(icon, color: Colors.grey) : null,
           ),

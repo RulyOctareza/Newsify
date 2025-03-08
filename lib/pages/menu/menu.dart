@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:newsify/controller/settings_profile_controller.dart';
 import 'package:newsify/controller/url_launcher.dart';
+import 'package:newsify/pages/local_news/local_news_page.dart';
 import 'package:newsify/pages/menu/menu_widget.dart';
 
 import 'package:newsify/static/custom/text_button_widget.dart';
@@ -98,6 +99,13 @@ class Menu extends StatelessWidget {
                   Get.toNamed('/setting');
                 },
                 title: 'Settings',
+                color: darkGreen,
+              ),
+              MenuWidget(
+                ontap: () {
+                  Get.to(LocalNewsPage());
+                },
+                title: 'Local News Page',
                 color: darkGreen,
               ),
               Spacer(),

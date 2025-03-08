@@ -6,6 +6,7 @@ import 'package:newsify/controller/bookmark_controller.dart';
 import 'package:newsify/controller/category_controller.dart';
 import 'package:newsify/controller/news_controller.dart';
 import 'package:newsify/pages/detail/dummy_category.dart';
+import 'package:newsify/pages/local_news/local_news_form.dart';
 import 'package:newsify/static/card/news_card.dart';
 import 'package:newsify/static/custom/custom_appbar_news_header.dart';
 import 'package:newsify/static/style/typography.dart';
@@ -111,6 +112,12 @@ class NewsPage extends StatelessWidget {
             ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Get.to(() => LocalNewsForm());
+        },
+        child: const Icon(Icons.add),
       ),
     );
   }
