@@ -1,230 +1,113 @@
-# News App - Flutter
+<p align="center">
+  <img src="docs/preview/hero.png" alt="Newsify — ilustrasi aplikasi pembaca berita" width="100%">
+</p>
 
-## 📌 Deskripsi Proyek
+<h1 align="center">Newsify</h1>
 
-Proyek ini merupakan bagian dari penyelesaian bootcamp Sanbercode Flutter. Aplikasi ini menampilkan berita dari API [NewsAPI.org](https://newsapi.org/) yang tersedia secara gratis.
+<p align="center">
+  <b>Berita dunia dalam satu aplikasi yang rapi.</b><br>
+  NewsAPI · Firebase Auth · GetX · Flutter
+</p>
 
-Aplikasi ini dapat digunakan secara komersial, namun dengan keterbatasan API untuk pengguna gratis, yaitu hanya bisa mendapatkan headline dan deskripsi singkat dari berita.
-
-## ✨ Fitur Aplikasi
-
-- **Autentikasi Pengguna**
-  - Register dan login dengan email & password menggunakan Firebase Authentication.
-  - Login menggunakan akun Google untuk pengalaman yang lebih mudah dan cepat.
-- **Penyimpanan Sesi**
-  - Menggunakan `shared_preferences` untuk menyimpan sesi pengguna agar tidak perlu login kembali selama aplikasi tidak ditutup sepenuhnya.
-- **Tampilan UI Menarik**
-
-  - Desain UI terinspirasi dari Figma Community dengan lebih dari 1K likes.
-  - [Lihat desain di Figma](<https://www.figma.com/design/d7XSnx51jr5nev8iaMT5Es/News-App-(World-News)-UI-Kit-(Community)?t=n33FUjcBYaNo5ptP-0>)
-
-- **Kategori Berita**
-  - Pengguna bisa mencari berita berdasarkan kategori yang disediakan oleh NewsAPI.org.
-- **Pencarian Berita**
-  - Pengguna bisa mencari berita tertentu melalui kotak pencarian yang disediakan.
-- **Berbagi Berita**
-  - Pengguna bisa membagikan berita ke berbagai platform lain seperti WhatsApp, Instagram, Facebook, dll.
-- **Fitur Bookmark**
-  - Pengguna bisa menyimpan berita untuk dibaca nanti.
-
-## 🛠 Teknologi & Package yang Digunakan
-
-Aplikasi ini menggunakan **State Management GetX** untuk manajemen status yang lebih efisien. Berikut adalah daftar dependencies yang digunakan dalam proyek ini:
-
-```yaml
-dependencies:
-  flutter:
-    sdk: flutter
-
-  cupertino_icons: ^1.0.8
-  google_fonts: ^6.2.1
-  get: ^4.7.2
-  url_launcher: ^6.3.1
-  firebase_core: ^3.12.0
-  firebase_auth: ^5.5.0
-  google_sign_in: ^6.2.2
-  get_storage: ^2.1.1
-  image_picker: ^1.1.2
-  shared_preferences: ^2.5.2
-  dio: ^5.8.0+1
-  intl: ^0.20.2
-  flutter_dotenv: ^5.2.1
-  lottie: ^3.3.1
-```
-
-## Berikut Screenshot dari Aplikasi ini
-
-1. Splashscreen(loading screen)
-   ![alt text](screenshot/splash_screen.png)
-
-2. Onboarding Screen
-   ![alt text](screenshot/onboarding1.png)
-
-![alt text](screenshot/onboarding2.png)
-
-![alt text](screenshot/onboarding3.png)
-
-3. Login Page
-   ![alt text](screenshot/login_page.png)
-
-4. Sign Up Page
-   ![alt text](screenshot/signup_page.png)
-
-5. News Page
-   ![alt text](screenshot/news_page.png)
-
-6. Search Page
-   ![alt text](screenshot/search_page.png)
-
-7. Saved Page
-   ![alt text](screenshot/saved_page.png)
-
-8. Menu Page
-   ![alt text](screenshot/menu_page.png)
-
-9. Settings Page
-   ![alt text](screenshot/settings_page.png)
-
-10. Share pop-up
-    ![alt text](screenshot/share_popup.png)
-
-11. Detail Page
-    ![alt text](screenshot/detail_page.png)
-
-12. Error Page
-    ![alt text](<screenshot/error page.png>)
-
-## 📌 Cara Menjalankan Proyek
-
-1. Clone repositori ini:
-   ```sh
-   git clone https://github.com/username/repository-name.git
-   ```
-2. Masuk ke direktori proyek:
-   ```sh
-   cd repository-name
-   ```
-3. Install dependencies:
-   ```sh
-   flutter pub get
-   ```
-4. Buat file `.env` dan masukkan API Key dari [NewsAPI.org](https://newsapi.org/) seperti berikut:
-   ```env
-   NEWS_API_KEY=your_api_key_here
-   ```
-5. Jalankan aplikasi:
-   ```sh
-   flutter run
-   ```
-
-## 🎯 Catatan
-
-- Pastikan sudah memiliki akun Firebase dan mengkonfigurasi Firebase Authentication untuk Email/Password serta Google Sign-In.
-- Gunakan `.env` untuk menyimpan API Key agar lebih aman.
-
-## 📜 Lisensi
-
-Proyek ini bersifat open-source dan bebas digunakan, namun pastikan untuk mematuhi aturan penggunaan dari [NewsAPI.org](https://newsapi.org/).
+<p align="center">
+  <a href="https://flutter.dev"><img alt="Flutter" src="https://img.shields.io/badge/Flutter-3.x-02569B?logo=flutter&logoColor=white"></a>
+  <a href="https://pub.dev/packages/get"><img alt="GetX" src="https://img.shields.io/badge/State-GetX-8E24AA"></a>
+  <a href="https://firebase.google.com"><img alt="Firebase" src="https://img.shields.io/badge/Auth-Firebase-FFCA28?logo=firebase&logoColor=black"></a>
+  <a href="https://newsapi.org"><img alt="NewsAPI" src="https://img.shields.io/badge/API-NewsAPI.org-EF5350"></a>
+</p>
 
 ---
 
-🚀 Selamat mencoba dan semoga bermanfaat!
+## ✨ Preview
 
-# News App - Flutter
+<p align="center">
+  <img src="docs/preview/hero.png" alt="Mockup gelap Newsify" width="90%">
+</p>
 
-## 📌 Project Description
+<table align="center">
+  <tr>
+    <td><img src="screenshot/onboarding1.png" alt="Onboarding" width="170"></td>
+    <td><img src="screenshot/splash_screen.png" alt="Splash" width="170"></td>
+    <td><img src="screenshot/login_page.png" alt="Login" width="170"></td>
+    <td><img src="screenshot/news_page.png" alt="Berita" width="170"></td>
+  </tr>
+  <tr>
+    <td align="center">Onboarding</td>
+    <td align="center">Splash</td>
+    <td align="center">Login</td>
+    <td align="center">Berita</td>
+  </tr>
+</table>
 
-This project is part of completing the Sanbercode Flutter bootcamp. The app displays news from the [NewsAPI.org](https://newsapi.org/) API, which is available for free.
-
-This app can be used commercially, but with API limitations for free users, allowing only access to headlines and short descriptions of news articles.
-
-## ✨ Features
-
-- **User Authentication**
-  - Register and log in with email & password using Firebase Authentication.
-  - Log in with a Google account for a faster and easier experience.
-- **Session Storage**
-  - Uses `shared_preferences` to store user sessions, allowing users to stay logged in as long as the app is not fully closed.
-- **Attractive UI Design**
-  - UI design inspired by a Figma Community template with over 1K likes.
-  - [View the design on Figma](<https://www.figma.com/design/d7XSnx51jr5nev8iaMT5Es/News-App-(World-News)-UI-Kit-(Community)?t=n33FUjcBYaNo5ptP-0>)
-- **News Categories**
-  - Users can browse news based on categories provided by NewsAPI.org.
-- **News Search**
-  - Users can search for specific news articles using the search bar.
-- **Share News**
-  - Users can share news articles to other platforms like WhatsApp, Instagram, Facebook, etc.
-- **Bookmark Feature**
-  - Users can save articles for later reading.
-
-## 🛠 Technologies & Packages Used
-
-This app uses **GetX State Management** for efficient state handling. Below are the dependencies used in this project:
-
-```yaml
-dependencies:
-  flutter:
-    sdk: flutter
-
-  cupertino_icons: ^1.0.8
-  google_fonts: ^6.2.1
-  get: ^4.7.2
-
-  firebase_core: ^3.12.0
-  firebase_auth: ^5.5.0
-  google_sign_in: ^6.2.2
-  shared_preferences: ^2.5.2
-  dio: ^5.8.0+1
-  intl: ^0.20.2
-  flutter_dotenv: ^5.2.1
-  lottie: ^3.3.1
-```
-
-## 📌 How to Run the Project
-
-1. Clone this repository:
-   ```sh
-   git clone https://github.com/username/repository-name.git
-   ```
-2. Navigate to the project directory:
-   ```sh
-   cd repository-name
-   ```
-3. Install dependencies:
-   ```sh
-   flutter pub get
-   ```
-4. Create a `.env` file and insert your API Key from [NewsAPI.org](https://newsapi.org/):
-   ```env
-   NEWS_API_KEY=your_api_key_here
-   ```
-5. Run the application:
-   ```sh
-   flutter run
-   ```
-
-## 🎯 Notes
-
-- Make sure you have a Firebase account and configure Firebase Authentication for Email/Password and Google Sign-In.
-- Use `.env` to store your API Key for better security.
-
-## 📜 License
-
-This project is open-source and free to use, but make sure to comply with the usage policies of [NewsAPI.org](https://newsapi.org/).
+<table align="center">
+  <tr>
+    <td><img src="screenshot/search_page.png" alt="Pencarian" width="170"></td>
+    <td><img src="screenshot/detail_page.png" alt="Detail berita" width="170"></td>
+    <td><img src="screenshot/saved_page.png" alt="Bookmark" width="170"></td>
+    <td><img src="screenshot/share_popup.png" alt="Bagikan" width="170"></td>
+  </tr>
+  <tr>
+    <td align="center">Pencarian</td>
+    <td align="center">Detail</td>
+    <td align="center">Bookmark</td>
+    <td align="center">Share</td>
+  </tr>
+</table>
 
 ---
 
-🚀 Happy coding and enjoy!
+## 📖 Tentang
 
-## Getting Started
+Newsify menampilkan berita dari [NewsAPI.org](https://newsapi.org/). Proyek ini dikerjakan
+sebagai final project bootcamp Flutter Sanbercode, dengan desain UI yang terinspirasi
+[News App UI Kit](https://www.figma.com/design/d7XSnx51jr5nev8iaMT5Es/News-App-(World-News)-UI-Kit-(Community))
+di Figma Community.
 
-This project is a starting point for a Flutter application.
+> Akun NewsAPI gratis hanya memberi headline dan deskripsi singkat.
 
-A few resources to get you started if this is your first Flutter project:
+---
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 🌟 Fitur
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- 🔐 **Autentikasi** — register/login email & password, plus Google Sign-In
+- 💾 **Sesi tersimpan** dengan `shared_preferences`
+- 🗂️ **Berita per kategori**
+- 🔎 **Pencarian berita**
+- 🔖 **Bookmark** untuk dibaca nanti
+- 📤 **Bagikan** berita ke WhatsApp, Instagram, Facebook, dan lainnya
+- 🎨 **UI custom** dengan Google Fonts dan animasi Lottie
+
+---
+
+## 🛠️ Tech Stack
+
+| Area | Pilihan |
+|---|---|
+| Framework | Flutter |
+| State management | GetX |
+| Auth | Firebase Auth + Google Sign-In |
+| HTTP | Dio |
+| Penyimpanan lokal | GetStorage, SharedPreferences |
+| Media | `image_picker`, Lottie |
+| Konfigurasi | `flutter_dotenv` |
+
+---
+
+## 🚀 Menjalankan
+
+```bash
+flutter pub get
+flutter run
+```
+
+Buat file `.env` berisi API key NewsAPI dan Firebase, lalu jalankan `flutterfire configure`
+jika project Firebase belum terpasang.
+
+---
+
+## 🧪 Testing
+
+```bash
+flutter analyze
+flutter test
+```
